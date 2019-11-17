@@ -10,4 +10,10 @@
     <string name="lozinka">Lozinka</string>
     <string name="nemaRacun">Nemate korisnički račun?</string>
     <string name="regSeOvdje">Registrirajte se ovdje!</string>
+    <string name="ime">Ime</string>
+    <string name="prezime">Prezime</string>
+    <string name="datum_ro_enja">Datum rođenja</string>
+    <string name="ponovite_lozinku">Ponovite lozinku</string>
+    <string name="vec_ste_registrirani">Već ste registrirani?</string>
+    <string name="prijavite_se_ovdje">Prijavite se ovdje</string>
 </resources>
