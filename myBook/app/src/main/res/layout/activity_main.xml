@@ -7,7 +7,7 @@
     android:background="@drawable/pozadina">
 
     <ImageView
-        android:contentDescription="@string/opisPozadine"
+        android:contentDescription="@string/app_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="125dp"
@@ -25,7 +25,7 @@
         android:text="@string/prijava" />
 
     <Button
-        android:contentDescription="@string/opisRegistracije"
+        android:contentDescription="@string/registracija"
         android:id="@+id/buttonRegister"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
