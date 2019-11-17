@@ -14,7 +14,7 @@
         android:src="@drawable/m3"/>
 
     <Button
-        android:contentDescription="@string/opisPrijave"
+        android:contentDescription="@string/opis_prijave"
         android:id="@+id/button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"

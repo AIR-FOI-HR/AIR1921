@@ -49,7 +49,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
     <Button
-        android:contentDescription="@string/opisPrijave"
+        android:contentDescription="@string/opis_prijave"
         android:id="@+id/button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
         android:id="@+id/prijavatext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nemaRacun"
+        android:text="@string/nema_racun"
         android:textColor="@color/colorDark"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="550dp"
@@ -75,7 +75,7 @@
         android:id="@+id/prijavatext2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/regSeOvdje"
+        android:text="@string/reg_ovdje"
         android:textColor="@color/colorDark"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="580dp"
