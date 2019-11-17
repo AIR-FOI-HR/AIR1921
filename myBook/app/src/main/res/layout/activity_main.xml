@@ -6,5 +6,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/pozadina">
 
-    
+    <ImageView
+        android:contentDescription="@string/opisPozadine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="125dp"
+        android:src="@drawable/m3"/>
+
+    <Button
+        android:contentDescription="@string/opisPrijave"
+        android:id="@+id/button"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorDark"
+        android:textColor="@color/colorLight"
+        android:text="@string/prijava" />
 </LinearLayout>

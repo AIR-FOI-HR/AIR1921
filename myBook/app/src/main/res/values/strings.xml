@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MyBook</string>
+    <string name="prijava">Prijava</string>
+    <string name="opisPozadine">MyBook</string>
+    <string name="registracija">Registracija</string>
+    <string name="opisPrijave">Prijava u aplikaciju</string>
+    <string name="opisRegistracije">Registracija</string>
 </resources>
