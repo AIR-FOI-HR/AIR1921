@@ -23,4 +23,15 @@
         android:background="@color/colorDark"
         android:textColor="@color/colorLight"
         android:text="@string/prijava" />
+
+    <Button
+        android:contentDescription="@string/opisRegistracije"
+        android:id="@+id/buttonRegister"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorDark"
+        android:textColor="@color/colorLight"
+        android:text="@string/registracija" />
 </LinearLayout>
