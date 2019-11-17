@@ -5,4 +5,5 @@
     <string name="registracija">Registracija</string>
     <string name="opisPrijave">Prijava u aplikaciju</string>
     <string name="opisRegistracije">Registracija</string>
+    <string name="title_activity_login">LoginActivity</string>
 </resources>
