@@ -10,7 +10,7 @@
     <string name="reg_ovdje">Registrirajte se ovdje!</string>
     <string name="ime">Ime</string>
     <string name="prezime">Prezime</string>
-    <string name="datum_ro_enja">Datum rođenja</string>
+    <string name="datum_rodenja">Datum rođenja</string>
     <string name="ponovite_lozinku">Ponovite lozinku</string>
     <string name="vec_ste_registrirani">Već ste registrirani?</string>
     <string name="prijavite_se_ovdje">Prijavite se ovdje</string>
