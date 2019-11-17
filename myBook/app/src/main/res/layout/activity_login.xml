@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".LoginActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -13,6 +14,7 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            android:label="@string/prijava"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -22,12 +24,66 @@
 
     <include layout="@layout/content_login" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+    <EditText
+    android:id="@+id/editText"
+    android:layout_width="350dp"
+    android:layout_height="40dp"
+    android:layout_marginTop="200dp"
+    android:layout_gravity="center_horizontal"
+    android:inputType="textEmailAddress"
+    android:hint="@string/email"
+    android:text=""
+    android:textColorHint="@color/colorDark"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"/>
+
+    <EditText
+        android:id="@+id/editTextloz"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="300dp"
+        android:layout_gravity="center_horizontal"
+        android:inputType="textPassword"
+        android:hint="@string/lozinka"
+        android:text=""
+        android:textColorHint="@color/colorDark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+    <Button
+        android:contentDescription="@string/opisPrijave"
+        android:id="@+id/button"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorDark"
+        android:textColor="@color/colorLight"
+        android:text="@string/prijava" />
+
+    <TextView
+        android:id="@+id/prijavatext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:text="@string/nemaRacun"
+        android:textColor="@color/colorDark"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="550dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+    <TextView
+        android:id="@+id/prijavatext2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/regSeOvdje"
+        android:textColor="@color/colorDark"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="580dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
