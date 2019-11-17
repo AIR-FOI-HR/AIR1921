@@ -11,7 +11,7 @@
         android:id="@+id/first_name"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
         android:hint="Ime"
         android:textAlignment="center"
         android:inputType="text"
@@ -46,6 +46,15 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/last_name" />
+
+    <ImageView
+        android:id="@+id/date_icon"
+        android:src="@mipmap/ic_date"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/birth_date"
+        app:layout_constraintEnd_toEndOf="@+id/birth_date" />
 
     <EditText
         android:id="@+id/email"
