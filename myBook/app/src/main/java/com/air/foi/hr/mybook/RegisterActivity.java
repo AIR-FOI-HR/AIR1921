@@ -1,6 +1,7 @@
 package com.air.foi.hr.mybook;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
 import android.graphics.Color;
@@ -25,6 +26,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         displayDate = findViewById(R.id.birth_date);
         displayDate.setInputType(InputType.TYPE_NULL);
