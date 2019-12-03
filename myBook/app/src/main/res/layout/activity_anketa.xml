@@ -24,7 +24,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
         <Button
             android:contentDescription="@string/spremi"
-            android:id="@+id/button"
+            android:id="@+id/buttonSpremiAnketu"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="580dp"
