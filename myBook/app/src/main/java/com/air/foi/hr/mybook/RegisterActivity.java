@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
@@ -61,5 +63,14 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         };
+
+        Button registracija=findViewById(R.id.registration);
+        registracija.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                Log.i(TAG, "Registracija clicked!");
+                startActivity(new Intent(RegisterActivity.this, AnketaActivity.class));
+            }
+        });
     }
 }
