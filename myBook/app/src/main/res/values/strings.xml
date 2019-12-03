@@ -13,4 +13,6 @@
     <string name="ponovite_lozinku">Ponovite lozinku</string>
     <string name="vec_ste_registrirani">Već ste registrirani?</string>
     <string name="prijavite_se_ovdje">Prijavite se ovdje</string>
+    <string name="spremi">Spremi</string>
+
 </resources>

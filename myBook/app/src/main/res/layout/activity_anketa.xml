@@ -22,7 +22,16 @@
             android:background="@color/colorLightPink"
             android:label="@string/prijava"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
-
+        <Button
+            android:contentDescription="@string/spremi"
+            android:id="@+id/button"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="580dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorDark"
+            android:textColor="@color/colorLight"
+            android:text="@string/spremi" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
