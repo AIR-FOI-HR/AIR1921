@@ -76,6 +76,8 @@ public class RegisterActivity extends AppCompatActivity {
                         .beginTransaction()
                         .replace(R.id.anketaFragment, new AnketaInteresiFragment())
                         .commit();
+                Toolbar toolbarAnketa = findViewById(R.id.toolbarAnketa);
+                setSupportActionBar(toolbarAnketa);
             }
         });
     }
