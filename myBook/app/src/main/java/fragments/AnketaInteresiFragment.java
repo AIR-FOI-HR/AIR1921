@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -21,5 +22,6 @@ import com.air.foi.hr.mybook.R;
  * create an instance of this fragment.
  */
 public class AnketaInteresiFragment extends Fragment {
+
 
 }
