@@ -2,14 +2,19 @@ package com.air.foi.hr.mybook;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import fragments.AnketaInteresiFragment;
 
 import android.app.DatePickerDialog;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
@@ -61,5 +66,19 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         };
+
+        Button registracija=findViewById(R.id.registration);
+        registracija.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                setContentView(R.layout.fragment_anketa_interesi);
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.anketaFragment, new AnketaInteresiFragment())
+                        .commit();
+                Toolbar toolbarAnketa = findViewById(R.id.toolbarAnketa);
+                setSupportActionBar(toolbarAnketa);
+            }
+        });
     }
 }
