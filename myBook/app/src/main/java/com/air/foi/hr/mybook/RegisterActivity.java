@@ -39,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText displayDate;
     DatePickerDialog.OnDateSetListener mDateSetListener;
 
+    DatabaseReference databaseKorisnici;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +48,16 @@ public class RegisterActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        databaseKorisnici = FirebaseDatabase.getInstance().getReference("korisnik");
+
         displayDate = findViewById(R.id.birth_date);
         displayDate.setInputType(InputType.TYPE_NULL);
+        username = findViewById(R.id.username);
+        firstName = findViewById(R.id.first_name);
+        lastName = findViewById(R.id.last_name);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        passwordRepeat = findViewById(R.id.password_repeat);
 
         displayDate.setOnClickListener(new View.OnClickListener() {
             @Override
