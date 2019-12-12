@@ -12,11 +12,17 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.air.foi.hr.database.entities.Korisnik;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
@@ -24,8 +30,15 @@ public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = "RegisterActivity";
 
+    EditText username;
+    EditText firstName;
+    EditText lastName;
+    EditText email;
+    EditText password;
+    EditText passwordRepeat;
     private EditText displayDate;
     DatePickerDialog.OnDateSetListener mDateSetListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
