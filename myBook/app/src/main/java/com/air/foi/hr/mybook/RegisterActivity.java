@@ -93,6 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
         registracija.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
+                registration();
                 setContentView(R.layout.fragment_anketa_interesi);
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -102,5 +103,31 @@ public class RegisterActivity extends AppCompatActivity {
                 setSupportActionBar(toolbarAnketa);
             }
         });
+
+    }
+
+    private void registration() {
+        String username = this.username.getText().toString().trim();
+        String firstName = this.firstName.getText().toString().trim();
+        String lastName = this.lastName.getText().toString().trim();
+        String mail = email.getText().toString().trim();
+        String pass = password.getText().toString().trim();
+        String passRepeat = passwordRepeat.getText().toString().trim();
+        String date = displayDate.getText().toString().trim();
+
+        if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName)
+                && !TextUtils.isEmpty(mail) && !TextUtils.isEmpty(pass) && !TextUtils.isEmpty(passRepeat)
+                && !TextUtils.isEmpty(date)){
+            if (pass.equals(passRepeat)){
+                Korisnik korisnik = new Korisnik(username, firstName, lastName, pass, mail, date);
+                databaseKorisnici.child(username).setValue(korisnik);
+                Toast.makeText(this, "Korisnik dodan", Toast.LENGTH_LONG).show();
+            }
+            else
+                Toast.makeText(this, "Lozinke se ne podudaraju", Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(this,"Unesite podatke", Toast.LENGTH_LONG).show();
+        }
     }
 }
