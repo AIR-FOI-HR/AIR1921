@@ -22,4 +22,9 @@
         android:id="@+id/tabLayoutPreporuke"
         android:background="@color/colorLightPink"
         android:minHeight="?attr/actionBarSize"/>
+    
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/viewPagerPreporuke"/>
 </LinearLayout>
