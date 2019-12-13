@@ -19,5 +19,7 @@
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tabLayoutPreporuke" />
+        android:id="@+id/tabLayoutPreporuke"
+        android:background="@color/colorLightPink"
+        android:minHeight="?attr/actionBarSize"/>
 </LinearLayout>
