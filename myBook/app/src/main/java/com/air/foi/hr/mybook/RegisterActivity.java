@@ -2,12 +2,10 @@ package com.air.foi.hr.mybook;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
+
 import fragments.AnketaInteresiFragment;
 
 import android.app.DatePickerDialog;
-import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -24,7 +22,10 @@ import com.air.foi.hr.database.entities.Korisnik;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.security.MessageDigest;
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -128,6 +129,25 @@ public class RegisterActivity extends AppCompatActivity {
         }
         else {
             Toast.makeText(this,"Unesite podatke", Toast.LENGTH_LONG).show();
+    // MD-5 hashiranje koje prima plain text lozinku, a vraća hashiranu vrijednost
+    private String hashPassword(String pass) {
+        String generatedPassword;
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(pass.getBytes());
+            byte[] bytes = md.digest();
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++)
+            {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            generatedPassword = sb.toString();
         }
+        catch (Exception e)
+        {
+            Log.e("Exception", String.valueOf(e));
+            generatedPassword = "invalid";
+        }
+        return generatedPassword;
     }
 }
