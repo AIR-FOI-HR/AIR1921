@@ -24,7 +24,7 @@
     <include layout="@layout/content_login" />
 
     <EditText
-    android:id="@+id/editText"
+    android:id="@+id/email"
     android:layout_width="350dp"
     android:layout_height="40dp"
     android:layout_marginTop="200dp"
@@ -37,7 +37,7 @@
     app:layout_constraintRight_toRightOf="parent"/>
 
     <EditText
-        android:id="@+id/editTextloz"
+        android:id="@+id/password"
         android:layout_width="350dp"
         android:layout_height="40dp"
         android:layout_marginTop="300dp"
@@ -50,7 +50,7 @@
         app:layout_constraintRight_toRightOf="parent"/>
     <Button
         android:contentDescription="@string/opis_prijave"
-        android:id="@+id/button"
+        android:id="@+id/buttonLogin"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="400dp"
