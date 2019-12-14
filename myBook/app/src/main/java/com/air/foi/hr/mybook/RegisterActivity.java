@@ -116,19 +116,38 @@ public class RegisterActivity extends AppCompatActivity {
         String passRepeat = passwordRepeat.getText().toString().trim();
         String date = displayDate.getText().toString().trim();
 
+        String regex = "^([^.]([A-Za-z0-9]*[.]?[A-Za-z0-9]*)@[A-Za-z0-9]*\\.[A-Za-z0-9]{2,})$";
+        Pattern pattern = Pattern.compile(regex);
+
         if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName)
                 && !TextUtils.isEmpty(mail) && !TextUtils.isEmpty(pass) && !TextUtils.isEmpty(passRepeat)
-                && !TextUtils.isEmpty(date)){
-            if (pass.equals(passRepeat)){
-                Korisnik korisnik = new Korisnik(username, firstName, lastName, pass, mail, date);
-                databaseKorisnici.child(username).setValue(korisnik);
-                Toast.makeText(this, "Korisnik dodan", Toast.LENGTH_LONG).show();
+                && !TextUtils.isEmpty(date)) //provjera popunjenosti polja
+        {
+            if (pass.equals(passRepeat)) //provjera jednakosti lozinka
+            {
+                String hashPass = hashPassword(pass);
+                if (hashPass.equals("invalid")) //provjera kriptiranja lozinke
+                    Toast.makeText(this, "Neuspješno kriptiranje lozinke", Toast.LENGTH_LONG).show();
+                else
+                    {
+                    Matcher matcher = pattern.matcher(mail);
+                    if (matcher.matches()) //provjera regularnog izraza email adrese
+                    {
+                        Korisnik korisnik = new Korisnik(username, firstName, lastName, hashPass, mail, date);
+                        databaseKorisnici.child(username).setValue(korisnik);
+                        Toast.makeText(this, "Korisnik dodan", Toast.LENGTH_LONG).show();
+                    }
+                    else
+                        Toast.makeText(this, "Pogrešno upisan email", Toast.LENGTH_LONG).show();
+                }
             }
             else
                 Toast.makeText(this, "Lozinke se ne podudaraju", Toast.LENGTH_LONG).show();
         }
-        else {
+        else
             Toast.makeText(this,"Unesite podatke", Toast.LENGTH_LONG).show();
+    }
+
     // MD-5 hashiranje koje prima plain text lozinku, a vraća hashiranu vrijednost
     private String hashPassword(String pass) {
         String generatedPassword;
