@@ -1,5 +1,6 @@
 package com.air.foi.hr.mybook;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -19,8 +20,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.air.foi.hr.database.entities.Korisnik;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.security.MessageDigest;
 import java.util.Calendar;
@@ -94,14 +98,8 @@ public class RegisterActivity extends AppCompatActivity {
         registracija.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                registration();
-                setContentView(R.layout.fragment_anketa_interesi);
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.anketaFragment, new AnketaInteresiFragment())
-                        .commit();
-                Toolbar toolbarAnketa = findViewById(R.id.toolbarAnketa);
-                setSupportActionBar(toolbarAnketa);
+                String userName = username.getText().toString();
+                userNotExist(userName);
             }
         });
 
@@ -123,29 +121,72 @@ public class RegisterActivity extends AppCompatActivity {
                 && !TextUtils.isEmpty(mail) && !TextUtils.isEmpty(pass) && !TextUtils.isEmpty(passRepeat)
                 && !TextUtils.isEmpty(date)) //provjera popunjenosti polja
         {
-            if (pass.equals(passRepeat)) //provjera jednakosti lozinka
-            {
-                String hashPass = hashPassword(pass);
-                if (hashPass.equals("invalid")) //provjera kriptiranja lozinke
-                    Toast.makeText(this, "Neuspješno kriptiranje lozinke", Toast.LENGTH_LONG).show();
-                else
+                if (pass.length() >= 6) {
+                    if (pass.equals(passRepeat)) //provjera jednakosti lozinka
                     {
-                    Matcher matcher = pattern.matcher(mail);
-                    if (matcher.matches()) //provjera regularnog izraza email adrese
-                    {
-                        Korisnik korisnik = new Korisnik(username, firstName, lastName, hashPass, mail, date);
-                        databaseKorisnici.child(username).setValue(korisnik);
-                        Toast.makeText(this, "Korisnik dodan", Toast.LENGTH_LONG).show();
-                    }
-                    else
-                        Toast.makeText(this, "Pogrešno upisan email", Toast.LENGTH_LONG).show();
-                }
-            }
-            else
-                Toast.makeText(this, "Lozinke se ne podudaraju", Toast.LENGTH_LONG).show();
+                        String hashPass = hashPassword(pass);
+                        if (hashPass.equals("invalid")) //provjera kriptiranja lozinke
+                            Toast.makeText(this, "Neuspješno kriptiranje lozinke", Toast.LENGTH_LONG).show();
+                        else {
+                            Matcher matcher = pattern.matcher(mail);
+                            if (matcher.matches()) //provjera regularnog izraza email adrese
+                            {
+                                Korisnik korisnik = new Korisnik(username, firstName, lastName, hashPass, mail, date);
+                                databaseKorisnici.child(username).setValue(korisnik);
+                                Toast.makeText(this, "Korisnik dodan", Toast.LENGTH_LONG).show();
+                                setContentView(R.layout.fragment_anketa_interesi);
+                                getSupportFragmentManager()
+                                        .beginTransaction()
+                                        .replace(R.id.anketaFragment, new AnketaInteresiFragment())
+                                        .commit();
+                                Toolbar toolbarAnketa = findViewById(R.id.toolbarAnketa);
+                                setSupportActionBar(toolbarAnketa);
+                            } else
+                                Toast.makeText(this, "Pogrešno upisan email", Toast.LENGTH_LONG).show();
+                        }
+                    } else
+                        Toast.makeText(this, "Lozinke se ne podudaraju", Toast.LENGTH_LONG).show();
+                } else
+                    Toast.makeText(this, "Lozinke je prekratka", Toast.LENGTH_LONG).show();
         }
         else
             Toast.makeText(this,"Unesite podatke", Toast.LENGTH_LONG).show();
+    }
+
+    private void userNotExist(final String username){
+        databaseKorisnici.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child(username).exists()){
+                    if (!username.isEmpty()) {
+                        Korisnik korisnik = dataSnapshot.child(username).getValue(Korisnik.class);
+                        if (korisnik.getKorime().equals(username)) {
+                            //Korisničko ime već postoji;
+                            Log.i("login","postoji1");
+                            Toast.makeText(RegisterActivity.this, "Korisničko ime zauzeto", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            //Korisničko ime je ok;
+                            Log.i("login","ne postoji2");
+                            registration();
+                        }
+                    }
+                    else {
+                        //Korisničko ime već postoji;
+                        Log.i("login","postoji3");
+                        Toast.makeText(RegisterActivity.this, "Unesite korisničko ime", Toast.LENGTH_LONG).show();
+                    }
+                }
+                else {
+                    //Korisničko ime je ok;
+                    Log.i("login","ne postoji4");
+                    registration();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 
     // MD-5 hashiranje koje prima plain text lozinku, a vraća hashiranu vrijednost
