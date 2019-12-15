@@ -30,8 +30,9 @@
     android:layout_marginTop="200dp"
     android:layout_gravity="center_horizontal"
     android:inputType="textEmailAddress"
-    android:hint="@string/email"
+    android:hint="@string/korisnicko_ime"
     android:text=""
+    android:textAlignment="center"
     android:textColorHint="@color/colorDark"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"/>
@@ -45,6 +46,7 @@
         android:inputType="textPassword"
         android:hint="@string/lozinka"
         android:text=""
+        android:textAlignment="center"
         android:textColorHint="@color/colorDark"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
