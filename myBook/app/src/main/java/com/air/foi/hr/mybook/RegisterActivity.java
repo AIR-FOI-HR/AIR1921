@@ -17,9 +17,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.air.foi.hr.database.entities.Korisnik;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,8 +48,10 @@ public class RegisterActivity extends AppCompatActivity {
     EditText passwordRepeat;
     private EditText displayDate;
     DatePickerDialog.OnDateSetListener mDateSetListener;
+    ProgressBar progressBar;
 
     DatabaseReference databaseKorisnici;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         databaseKorisnici = FirebaseDatabase.getInstance().getReference("korisnik");
+        firebaseAuth = FirebaseAuth.getInstance();
 
         displayDate = findViewById(R.id.birth_date);
         displayDate.setInputType(InputType.TYPE_NULL);
@@ -63,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         passwordRepeat = findViewById(R.id.password_repeat);
+        progressBar = findViewById(R.id.progressBar);
 
         displayDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +99,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                 String date = dayOfMonth + "/" + month + "/" + year;
                 displayDate.setText(date);
-
             }
         };
 
@@ -98,21 +106,21 @@ public class RegisterActivity extends AppCompatActivity {
         registracija.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
+                progressBar.setVisibility(View.VISIBLE);
                 String userName = username.getText().toString();
                 userNotExist(userName);
             }
         });
-
     }
 
     private void registration() {
-        String username = this.username.getText().toString().trim();
-        String firstName = this.firstName.getText().toString().trim();
-        String lastName = this.lastName.getText().toString().trim();
-        String mail = email.getText().toString().trim();
+        final String username = this.username.getText().toString().trim();
+        final String firstName = this.firstName.getText().toString().trim();
+        final String lastName = this.lastName.getText().toString().trim();
+        final String mail = email.getText().toString().trim();
         String pass = password.getText().toString().trim();
         String passRepeat = passwordRepeat.getText().toString().trim();
-        String date = displayDate.getText().toString().trim();
+        final String date = displayDate.getText().toString().trim();
 
         String regex = "^([^.]([A-Za-z0-9]*[.]?[A-Za-z0-9]*)@[A-Za-z0-9]*\\.[A-Za-z0-9]{2,})$";
         Pattern pattern = Pattern.compile(regex);
@@ -124,30 +132,43 @@ public class RegisterActivity extends AppCompatActivity {
                 if (pass.length() >= 6) {
                     if (pass.equals(passRepeat)) //provjera jednakosti lozinka
                     {
-                        String hashPass = hashPassword(pass);
-                        if (hashPass.equals("invalid")) //provjera kriptiranja lozinke
-                            Toast.makeText(this, "Neuspješno kriptiranje lozinke", Toast.LENGTH_LONG).show();
-                        else {
                             Matcher matcher = pattern.matcher(mail);
                             if (matcher.matches()) //provjera regularnog izraza email adrese
                             {
-                                Korisnik korisnik = new Korisnik(username, firstName, lastName, hashPass, mail, date);
-                                databaseKorisnici.child(username).setValue(korisnik);
-                                Toast.makeText(this, "Korisnik dodan", Toast.LENGTH_LONG).show();
-                                setContentView(R.layout.fragment_anketa_interesi);
-                                getSupportFragmentManager()
-                                        .beginTransaction()
-                                        .replace(R.id.anketaFragment, new AnketaInteresiFragment())
-                                        .commit();
-                                Toolbar toolbarAnketa = findViewById(R.id.toolbarAnketa);
-                                setSupportActionBar(toolbarAnketa);
+                                firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(),
+                                        password.getText().toString())
+                                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                                progressBar.setVisibility(View.GONE);
+                                                if (task.isSuccessful()){
+                                                    Toast.makeText(RegisterActivity.this, "Registracija uspješna",
+                                                            Toast.LENGTH_LONG).show();
+                                                    Korisnik korisnik = new Korisnik(username, firstName, lastName, mail, date);
+                                                    databaseKorisnici.child(username).setValue(korisnik);
+                                                    setContentView(R.layout.fragment_anketa_interesi);
+                                                    getSupportFragmentManager()
+                                                            .beginTransaction()
+                                                            .replace(R.id.anketaFragment, new AnketaInteresiFragment())
+                                                            .commit();
+                                                    Toolbar toolbarAnketa = findViewById(R.id.toolbarAnketa);
+                                                    setSupportActionBar(toolbarAnketa);
+                                                }else{
+                                                    Toast.makeText(RegisterActivity.this, task.getException().getMessage(),
+                                                            Toast.LENGTH_LONG).show();
+                                                }
+                                            }
+                                        });
                             } else
                                 Toast.makeText(this, "Pogrešno upisan email", Toast.LENGTH_LONG).show();
-                        }
+                        progressBar.setVisibility(View.GONE);
                     } else
                         Toast.makeText(this, "Lozinke se ne podudaraju", Toast.LENGTH_LONG).show();
-                } else
+                    progressBar.setVisibility(View.GONE);
+                } else {
                     Toast.makeText(this, "Lozinke je prekratka", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
+                }
         }
         else
             Toast.makeText(this,"Unesite podatke", Toast.LENGTH_LONG).show();
@@ -162,24 +183,24 @@ public class RegisterActivity extends AppCompatActivity {
                         Korisnik korisnik = dataSnapshot.child(username).getValue(Korisnik.class);
                         if (korisnik.getKorime().equals(username)) {
                             //Korisničko ime već postoji;
-                            Log.i("login","postoji1");
+                            Log.i("login","Zauzeto korime");
                             Toast.makeText(RegisterActivity.this, "Korisničko ime zauzeto", Toast.LENGTH_LONG).show();
                         }
                         else {
                             //Korisničko ime je ok;
-                            Log.i("login","ne postoji2");
+                            Log.i("login","Ne postoji :)");
                             registration();
                         }
                     }
                     else {
                         //Korisničko ime već postoji;
-                        Log.i("login","postoji3");
+                        Log.i("login","Nije unešeno");
                         Toast.makeText(RegisterActivity.this, "Unesite korisničko ime", Toast.LENGTH_LONG).show();
                     }
                 }
                 else {
                     //Korisničko ime je ok;
-                    Log.i("login","ne postoji4");
+                    Log.i("login","Ne postoji :)");
                     registration();
                 }
             }
@@ -187,27 +208,5 @@ public class RegisterActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-    }
-
-    // MD-5 hashiranje koje prima plain text lozinku, a vraća hashiranu vrijednost
-    private String hashPassword(String pass) {
-        String generatedPassword;
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(pass.getBytes());
-            byte[] bytes = md.digest();
-            StringBuilder sb = new StringBuilder();
-            for(int i=0; i< bytes.length ;i++)
-            {
-                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-            }
-            generatedPassword = sb.toString();
-        }
-        catch (Exception e)
-        {
-            Log.e("Exception", String.valueOf(e));
-            generatedPassword = "invalid";
-        }
-        return generatedPassword;
     }
 }
