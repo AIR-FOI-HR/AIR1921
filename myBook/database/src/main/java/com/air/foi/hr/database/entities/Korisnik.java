@@ -5,7 +5,6 @@ public class Korisnik {
     String korime;
     String ime;
     String prezime;
-    String lozinka;
     String mail;
     String datumRodenja;
 
@@ -13,11 +12,10 @@ public class Korisnik {
 
     }
 
-    public Korisnik(String korime, String ime, String prezime, String lozinka, String mail, String datumRodenja) {
+    public Korisnik(String korime, String ime, String prezime, String mail, String datumRodenja) {
         this.korime = korime;
         this.ime = ime;
         this.prezime = prezime;
-        this.lozinka = lozinka;
         this.mail = mail;
         this.datumRodenja = datumRodenja;
     }
@@ -44,14 +42,6 @@ public class Korisnik {
 
     public void setPrezime(String prezime) {
         this.prezime = prezime;
-    }
-
-    public String getLozinka() {
-        return lozinka;
-    }
-
-    public void setLozinka(String lozinka) {
-        this.lozinka = lozinka;
     }
 
     public String getMail() {
