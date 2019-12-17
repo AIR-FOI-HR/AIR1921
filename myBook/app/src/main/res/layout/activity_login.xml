@@ -19,6 +19,14 @@
             android:background="@color/colorLightPink"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:indeterminate="true"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_login" />
@@ -62,7 +70,7 @@
         android:text="@string/prijava" />
 
     <TextView
-        android:id="@+id/prijavatext"
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nema_racun"
@@ -74,11 +82,14 @@
         app:layout_constraintRight_toRightOf="parent"
         />
     <TextView
-        android:id="@+id/prijavatext2"
+        android:id="@+id/registration"
+        android:clickable="true"
+        android:focusable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/reg_ovdje"
         android:textColor="@color/colorDark"
+        android:textStyle="bold"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="580dp"
         app:layout_constraintBottom_toBottomOf="parent"
