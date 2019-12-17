@@ -106,7 +106,6 @@ public class RegisterActivity extends AppCompatActivity {
         registracija.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                progressBar.setVisibility(View.VISIBLE);
                 String userName = username.getText().toString();
                 userNotExist(userName);
             }
@@ -135,6 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
                             Matcher matcher = pattern.matcher(mail);
                             if (matcher.matches()) //provjera regularnog izraza email adrese
                             {
+                                progressBar.setVisibility(View.VISIBLE);
                                 firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(),
                                         password.getText().toString())
                                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -159,19 +159,19 @@ public class RegisterActivity extends AppCompatActivity {
                                                 }
                                             }
                                         });
-                            } else
+                            } else {
                                 Toast.makeText(this, "Pogrešno upisan email", Toast.LENGTH_LONG).show();
-                        progressBar.setVisibility(View.GONE);
-                    } else
+                            }
+                    } else {
                         Toast.makeText(this, "Lozinke se ne podudaraju", Toast.LENGTH_LONG).show();
-                    progressBar.setVisibility(View.GONE);
+                    }
                 } else {
                     Toast.makeText(this, "Lozinke je prekratka", Toast.LENGTH_LONG).show();
-                    progressBar.setVisibility(View.GONE);
                 }
         }
-        else
-            Toast.makeText(this,"Unesite podatke", Toast.LENGTH_LONG).show();
+        else {
+            Toast.makeText(this, "Unesite podatke", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void userNotExist(final String username){
