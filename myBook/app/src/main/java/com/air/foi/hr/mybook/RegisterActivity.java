@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import fragments.AnketaInteresiFragment;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.air.foi.hr.database.entities.Korisnik;
@@ -49,6 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText displayDate;
     DatePickerDialog.OnDateSetListener mDateSetListener;
     ProgressBar progressBar;
+    TextView login;
 
     DatabaseReference databaseKorisnici;
     FirebaseAuth firebaseAuth;
@@ -72,6 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         passwordRepeat = findViewById(R.id.password_repeat);
         progressBar = findViewById(R.id.progressBar);
+        login = findViewById(R.id.login);
 
         displayDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +105,14 @@ public class RegisterActivity extends AppCompatActivity {
                 displayDate.setText(date);
             }
         };
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                Log.i(TAG, "Prijava clicked!");
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            }
+        });
 
         Button registracija=findViewById(R.id.registration);
         registracija.setOnClickListener(new View.OnClickListener() {
