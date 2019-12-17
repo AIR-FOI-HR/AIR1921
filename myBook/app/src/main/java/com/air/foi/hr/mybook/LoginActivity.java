@@ -56,26 +56,55 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        Button login = findViewById(R.id.buttonLogin);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
+                String mail = email.getText().toString();
+                String pwd = password.getText().toString();
 
-    // MD-5 hashiranje koje prima plain text lozinku, a vraća hashiranu vrijednost
-    private String hashpass(String pass) {
-        String generatedPassword;
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(pass.getBytes());
-            byte[] bytes = md.digest();
-            StringBuilder sb = new StringBuilder();
-            for(int i=0; i< bytes.length ;i++)
-            {
-                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+                String regex = "^([^.]([A-Za-z0-9]*[.]?[A-Za-z0-9]*)@[A-Za-z0-9]*\\.[A-Za-z0-9]{2,})$";
+                Pattern pattern = Pattern.compile(regex);
+
+                if (!mail.isEmpty() && !pwd.isEmpty()) {
+                    if (pattern.matcher(mail).matches()) {
+                        if (password.length() >= 6) {
+                            firebaseAuth.signInWithEmailAndPassword(mail, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        firebaseUser = firebaseAuth.getCurrentUser();
+                                        Log.d(TAG, "User "+ firebaseUser.getEmail() +" logged in successfully");
+                                        Toast.makeText(LoginActivity.this, "Uspješna prijava " + firebaseUser.getEmail(), Toast.LENGTH_LONG).show();
+                                        progressBar.setVisibility(View.GONE);
+                                        //TODO: otvoriti Main screen i onemogućiti povratak tipkom back
+                                    } else {
+                                        Log.i(TAG, "Wrong email or password");
+                                        Toast.makeText(LoginActivity.this, "Pogrešan e-mail ili lozinka", Toast.LENGTH_LONG).show();
+                                        progressBar.setVisibility(View.GONE);
+                                    }
+                                }
+                            });
+                        }
+                        else {
+                            Log.i(TAG, "Password is too short.");
+                            Toast.makeText(LoginActivity.this, "Lozinka je prekratka", Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
+                        }
+                    }
+                    else {
+                        Log.i(TAG, "Wrong email format.");
+                        Toast.makeText(LoginActivity.this, "Pogrešno upisan email", Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.GONE);
+                    }
+                }
+                else {
+                    Log.i(TAG, "Empty login data passed.");
+                    Toast.makeText(LoginActivity.this,"Unesite podatke", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
+                }
             }
-            generatedPassword = sb.toString();
-        }
-        catch (Exception e)
-        {
-            Log.e("Exception", String.valueOf(e));
-            generatedPassword = "invalid";
-        }
-        return generatedPassword;
+        });
     }
 }
