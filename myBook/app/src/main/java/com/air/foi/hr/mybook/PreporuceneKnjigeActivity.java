@@ -3,7 +3,7 @@ package com.air.foi.hr.mybook;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.viewpager.widget.ViewPager;
-import fragments.PreporuceneKnjigeFragment;
+import fragments.PrijedloziFragment;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -11,7 +11,7 @@ import android.os.Bundle;
 import com.air.foi.hr.mybook.adapters.PrikazKnjigaAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-public class PreporuceneKnjigeActivity extends AppCompatActivity implements PreporuceneKnjigeFragment.OnFragmentInteractionListener {
+public class PreporuceneKnjigeActivity extends AppCompatActivity implements PrijedloziFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

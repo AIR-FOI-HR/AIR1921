@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import fragments.PreporuceneKnjigeFragment;
+import fragments.PrijedloziFragment;
 
 public class PrikazKnjigaAdapter extends FragmentStatePagerAdapter {
 
@@ -20,7 +20,7 @@ public class PrikazKnjigaAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                PreporuceneKnjigeFragment tabPreporucene = new PreporuceneKnjigeFragment();
+                PrijedloziFragment tabPreporucene = new PrijedloziFragment();
                 return tabPreporucene;
             //case 1: za knjige koje se trenutno citaju
             default:
