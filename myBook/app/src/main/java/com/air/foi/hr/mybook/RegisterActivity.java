@@ -107,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 String userName = username.getText().toString();
-                userNotExist(userName);
+                usernameVerification(userName);
             }
         });
     }
@@ -174,7 +174,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    private void userNotExist(final String username){
+    private void usernameVerification(final String username){
         databaseKorisnici.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
