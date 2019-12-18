@@ -18,6 +18,7 @@
     <string name="slika_knjige">Slika knjige</string>
     <string name="naslov_knjige">Naslov knjige</string>
     <string name="ocjena_knjige">Ocjena</string>
+    <string name="korisnicko_ime">Korisničko ime</string>
 
 
 </resources>

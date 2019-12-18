@@ -18,20 +18,27 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="match_parent"
             android:background="@color/colorLightPink"
             android:label="@string/registracija"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indeterminate="true"
+            android:visibility="gone" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
-
     <EditText
-        android:id="@+id/first_name"
+        android:id="@+id/username"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginTop="40dp"
-        android:hint="@string/ime"
+        android:hint="@string/korisnicko_ime"
         android:inputType="text"
         android:text=""
         android:textAlignment="center"
@@ -40,6 +47,21 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+    <EditText
+        android:id="@+id/first_name"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:hint="@string/ime"
+        android:inputType="text"
+        android:text=""
+        android:textAlignment="center"
+        android:textColorHint="@color/colorDark"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <EditText
         android:id="@+id/last_name"
@@ -140,13 +162,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/registration" />
+        app:layout_constraintTop_toTopOf="@id/registration"/>
 
     <TextView
-        android:id="@+id/action_text"
+        android:id="@+id/login"
+        android:clickable="true"
+        android:focusable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:text="@string/prijavite_se_ovdje"
         android:textStyle="bold"
         android:textColor="@color/colorDark"
@@ -155,5 +179,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/registration_text"
         app:layout_constraintVertical_bias="0.158" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
