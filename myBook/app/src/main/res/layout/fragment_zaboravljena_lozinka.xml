@@ -37,5 +37,16 @@
         android:textColor="@color/colorLight"
         android:text="@string/spremi" />
 
+    <TextView
+        android:id="@+id/prijava_zaboravljena_lozinka"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prijavite_se_ovdje"
+        android:textColor="@color/colorDark"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="560dp"/>
 
 </FrameLayout>
