@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import fragments.PrijedloziFragment;
+import fragments.TrenutnoCitamFragment;
 
 public class PrikazKnjigaAdapter extends FragmentStatePagerAdapter {
 
@@ -22,7 +23,9 @@ public class PrikazKnjigaAdapter extends FragmentStatePagerAdapter {
             case 0:
                 PrijedloziFragment tabPreporucene = new PrijedloziFragment();
                 return tabPreporucene;
-            //case 1: za knjige koje se trenutno citaju
+            case 1:
+                TrenutnoCitamFragment tabTrenutno=new TrenutnoCitamFragment();
+                return tabTrenutno;
             default:
                 return null;
 

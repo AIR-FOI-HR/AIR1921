@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.viewpager.widget.ViewPager;
 import fragments.PrijedloziFragment;
+import fragments.TrenutnoCitamFragment;
+
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -11,7 +13,7 @@ import android.os.Bundle;
 import com.air.foi.hr.mybook.adapters.PrikazKnjigaAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-public class PreporuceneKnjigeActivity extends AppCompatActivity implements PrijedloziFragment.OnFragmentInteractionListener {
+public class PreporuceneKnjigeActivity extends AppCompatActivity implements PrijedloziFragment.OnFragmentInteractionListener, TrenutnoCitamFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,7 @@ public class PreporuceneKnjigeActivity extends AppCompatActivity implements Prij
 
         TabLayout tabLayout = (TabLayout)findViewById(R.id.tabLayoutPreporuke);
         tabLayout.addTab(tabLayout.newTab().setText("Prijedlozi"));
+        tabLayout.addTab(tabLayout.newTab().setText("Trenutno čitam"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager=(ViewPager)findViewById(R.id.viewPagerPreporuke);
