@@ -19,9 +19,8 @@
     <string name="naslov_knjige">Naslov knjige</string>
     <string name="ocjena_knjige">Ocjena</string>
     <string name="korisnicko_ime">Korisničko ime</string>
+    <string name="zaboravljena_lozinka">Za postavljanje nove lozinke upišite svoju e-mail adresu. </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
