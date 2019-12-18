@@ -22,6 +22,7 @@ public class PreporuceneKnjigeActivity extends AppCompatActivity implements Prij
 
         TabLayout tabLayout = (TabLayout)findViewById(R.id.tabLayoutPreporuke);
         tabLayout.addTab(tabLayout.newTab().setText("Prijedlozi"));
+        tabLayout.addTab(tabLayout.newTab().setText("Trenutno čitam"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager=(ViewPager)findViewById(R.id.viewPagerPreporuke);
