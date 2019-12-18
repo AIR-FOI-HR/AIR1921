@@ -78,7 +78,10 @@ public class LoginActivity extends AppCompatActivity {
                                         Log.d(TAG, "User "+ firebaseUser.getEmail() +" logged in successfully");
                                         Toast.makeText(LoginActivity.this, "Uspješna prijava " + firebaseUser.getEmail(), Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
-                                        //TODO: otvoriti Main screen i onemogućiti povratak tipkom back
+
+                                        Intent intent = new Intent(LoginActivity.this, PreporuceneKnjigeActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
                                     } else {
                                         Log.i(TAG, "Wrong email or password");
                                         Toast.makeText(LoginActivity.this, "Pogrešan e-mail ili lozinka", Toast.LENGTH_LONG).show();
