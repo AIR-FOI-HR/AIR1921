@@ -4,6 +4,15 @@
     android:layout_height="match_parent"
     tools:context="fragments.ZaboravljenaLozinkaFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar_zaboravljena_lozinka"
+        android:label="@string/"
+        android:background="@color/colorLightPink"
+        android:minHeight="?attr/actionBarSize"
+        />
+
     <TextView
         android:id="@+id/text_zaboravljena_lozinka"
         android:layout_width="wrap_content"
