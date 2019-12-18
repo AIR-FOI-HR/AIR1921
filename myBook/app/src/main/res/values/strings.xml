@@ -19,7 +19,8 @@
     <string name="naslov_knjige">Naslov knjige</string>
     <string name="ocjena_knjige">Ocjena</string>
     <string name="korisnicko_ime">Korisničko ime</string>
-    <string name="zaboravljena_lozinka">Za postavljanje nove lozinke upišite svoju e-mail adresu. </string>
+    <string name="zaboravljena_lozinka_opis">Za postavljanje nove lozinke upišite svoju e-mail adresu. </string>
+    <string name="zaboravljena_lozinka">Zaboravljena lozinka </string>
 
 
 
