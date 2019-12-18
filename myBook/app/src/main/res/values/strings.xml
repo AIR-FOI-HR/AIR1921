@@ -14,6 +14,10 @@
     <string name="vec_ste_registrirani">Već ste registrirani?</string>
     <string name="prijavite_se_ovdje">Prijavite se ovdje</string>
     <string name="spremi">Spremi</string>
+    <string name="prijedlozi">Prijedlozi</string>
+    <string name="slika_knjige">Slika knjige</string>
+    <string name="naslov_knjige">Naslov knjige</string>
+    <string name="ocjena_knjige">Ocjena</string>
     <string name="korisnicko_ime">Korisničko ime</string>
 
 
