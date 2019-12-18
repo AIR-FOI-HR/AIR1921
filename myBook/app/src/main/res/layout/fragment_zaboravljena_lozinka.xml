@@ -1,6 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_zaboravljena_lozinka"
+    android:id="@+id/zaboravljena_lozinka_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="fragments.ZaboravljenaLozinkaFragment">
@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/toolbar_zaboravljena_lozinka"
-        android:label="@string/"
+        android:label="@string/zaboravljena_lozinka"
         android:background="@color/colorLightPink"
         android:minHeight="?attr/actionBarSize"
         />
@@ -18,7 +18,7 @@
         android:id="@+id/text_zaboravljena_lozinka"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/zaboravljena_lozinka"
+        android:text="@string/zaboravljena_lozinka_opis"
         android:textColor="@color/colorDark"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="200dp">
