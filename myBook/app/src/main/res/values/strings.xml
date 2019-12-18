@@ -17,7 +17,7 @@
     <string name="prijedlozi">Prijedlozi</string>
     <string name="slika_knjige">Slika knjige</string>
     <string name="naslov_knjige">Naslov knjige</string>
-    <string name="opis_knjige">Opis knjige</string>
+    <string name="ocjena_knjige">Ocjena</string>
 
 
 </resources>
