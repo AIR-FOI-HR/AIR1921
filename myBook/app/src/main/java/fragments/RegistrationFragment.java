@@ -1,7 +1,6 @@
 package fragments;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -14,9 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +25,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.air.foi.hr.database.entities.Korisnik;
-import com.air.foi.hr.mybook.LoginActivity;
 import com.air.foi.hr.mybook.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -127,7 +123,12 @@ public class RegistrationFragment extends Fragment {
             @Override
             public void onClick(View view){
                 Log.i(TAG, "Prijava clicked!");
-                startActivity(new Intent(getActivity(), LoginActivity.class));
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                LoginFragment loginFragment = new LoginFragment();
+                fragmentTransaction.hide(RegistrationFragment.this);
+                fragmentTransaction.replace(R.id.frameReg, loginFragment);
+                fragmentTransaction.commit();
             }
         });
 
