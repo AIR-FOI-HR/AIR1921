@@ -67,7 +67,68 @@ public class ZaboravljenaLozinkaFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+
+        final FirebaseAuth firebaseAuth;
+        firebaseAuth = FirebaseAuth.getInstance();
+
         email = view.findViewById(R.id.email_zaboravljena_lozinka);
         Button save = view.findViewById(R.id.button_spremi_zaboravljena_lozinka);
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
+                String mail = email.getText().toString();
+
+                String regex = "^([^.]([A-Za-z0-9]*[.]?[A-Za-z0-9]*)@[A-Za-z0-9]*\\.[A-Za-z0-9]{2,})$";
+                Pattern pattern = Pattern.compile(regex);
+
+                if (!mail.isEmpty()) {
+                    if (pattern.matcher(mail).matches()) {
+                        firebaseAuth.sendPasswordResetEmail(mail).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                    Log.i(TAG, "Password reset mail send!");
+                                    Toast.makeText(getActivity(), "Poslan link za promjenu lozinke na e-mail", Toast.LENGTH_LONG).show();
+                                    progressBar.setVisibility(View.GONE);FragmentManager fragmentManager = getFragmentManager();
+                                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                    LoginFragment loginFragment = new LoginFragment();
+                                    fragmentTransaction.hide(ZaboravljenaLozinkaFragment.this);
+                                    fragmentTransaction.replace(R.id.frameReg, loginFragment);
+                                    fragmentTransaction.commit();
+                                }
+                                else {
+                                    Log.i(TAG, "Password reset failed!");
+
+                                    LayoutInflater inflater = getLayoutInflater();
+                                    View layout = inflater.inflate(R.layout.custom_toast,
+                                            (ViewGroup) view.findViewById(R.id.custom_toast_container));
+
+                                    TextView text = layout.findViewById(R.id.text);
+                                    text.setText("Greška, provjerite unesen email!");
+                                    text.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                                    text.setTextColor(Color.rgb(113,0,43));
+
+                                    Toast toast = new Toast(getContext());
+                                    toast.setGravity(Gravity.BOTTOM, 0, 180);
+                                    toast.setDuration(Toast.LENGTH_LONG);
+                                    toast.setView(layout);
+                                    toast.show();
+
+
+                                    progressBar.setVisibility(View.GONE);
+                                }
+                            }
+                        });
+                    }
+                    else {
+                        Log.i(TAG, "Wrong email");
+                        Toast.makeText(getActivity(), "Pogrešan foormat e-maila", Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.GONE);
+                    }
+                }
+            }
+        });
     }
 }
