@@ -1,22 +1,19 @@
 package fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import com.air.foi.hr.mybook.LoginActivity;
 import com.air.foi.hr.mybook.R;
-import com.air.foi.hr.mybook.RegisterActivity;
 
 public class AnketaInteresiFragment extends Fragment {
 
@@ -42,8 +39,13 @@ public class AnketaInteresiFragment extends Fragment {
         saveForm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                Log.i(TAG, "Prijava clicked!");
-                startActivity(new Intent(getActivity(), LoginActivity.class));
+                Log.i(TAG, "Save Form Anketa!");
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                LoginFragment loginFragment = new LoginFragment();
+                fragmentTransaction.hide(AnketaInteresiFragment.this);
+                fragmentTransaction.replace(R.id.frameReg, loginFragment);
+                fragmentTransaction.commit();
             }
         });
     }
