@@ -1,13 +1,13 @@
 package com.air.foi.hr.mybook;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import fragments.LoginFragment;
 import fragments.RegistrationFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,7 +25,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Log.i(TAG, "Prijava clicked!");
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                setContentView(R.layout.layout_login_register);
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frameReg, new LoginFragment())
+                        .commit();
             }
         });
 
@@ -40,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
                         .beginTransaction()
                         .replace(R.id.frameReg, new RegistrationFragment())
                         .commit();
-
-
             }
         });
     }
