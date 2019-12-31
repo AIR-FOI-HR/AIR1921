@@ -176,14 +176,12 @@ public class RegistrationFragment extends Fragment {
                                                     Toast.LENGTH_LONG).show();
                                             Korisnik korisnik = new Korisnik(username, firstName, lastName, mail, date);
                                             databaseKorisnici.child(username).setValue(korisnik);
-//                                            setContentView(R.layout.fragment_anketa_interesi);
                                             FragmentManager fragmentManager = getFragmentManager();
                                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                            AnketaInteresiFragment anketaInteresiFragment = new AnketaInteresiFragment();
+                                            AnketaInteresiFragment anketaInteresiFragment = new AnketaInteresiFragment(korisnik);
                                             fragmentTransaction.hide(RegistrationFragment.this);
                                             fragmentTransaction.replace(R.id.frameReg, anketaInteresiFragment);
                                             fragmentTransaction.commit();
-                                            //setSupportActionBar(toolbarAnketa);
                                         }else{
                                             Toast.makeText(getActivity(), task.getException().getMessage(),
                                                     Toast.LENGTH_LONG).show();
