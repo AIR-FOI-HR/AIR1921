@@ -23,7 +23,10 @@
     <string name="zaboravljena_lozinka_opis">Za postavljanje nove lozinke upišite svoju e-mail adresu. </string>
     <string name="zaboravljena_lozinka">Zaboravljena lozinka </string>
     <string name="zaboravili_ste_lozinku">Zaboravili ste lozinku?</string>
+    <string name="pocetna">Početna</string>
+    <string name="sve_knjige">Sve knjige</string>
+    <string name="pretrazi">Pretraži</string>
+    <string name="nova_knjiga">Nova knjiga</string>
+    <string name="profil">Profil</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
