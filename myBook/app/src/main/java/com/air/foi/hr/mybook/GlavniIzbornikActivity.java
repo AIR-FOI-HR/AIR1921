@@ -15,4 +15,11 @@ public class GlavniIzbornikActivity extends AppCompatActivity {
         setContentView(R.layout.activity_glavni_izbornik);
         BottomNavigationView bottomNavigationView =findViewById(R.id.nav_view_glavna);
     }
+    private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener=
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                    return true;
+                }
+            };
 }
