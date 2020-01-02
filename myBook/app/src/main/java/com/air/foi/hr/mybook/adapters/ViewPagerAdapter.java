@@ -7,12 +7,12 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import fragments.PrijedloziFragment;
 import fragments.TrenutnoCitamFragment;
 
-public class PrikazKnjigaAdapter extends FragmentStatePagerAdapter {
+public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
-    int sviTabovi;
+    private int sviTabovi;
 
-    public PrikazKnjigaAdapter(@NonNull FragmentManager fm, int brojTabova) {
-        super(fm);
+    public ViewPagerAdapter(@NonNull FragmentManager fm, int brojTabova) {
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         this.sviTabovi=brojTabova;
     }
 
@@ -21,13 +21,11 @@ public class PrikazKnjigaAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                PrijedloziFragment tabPreporucene = new PrijedloziFragment();
-                return tabPreporucene;
+                return new PrijedloziFragment();
             case 1:
-                TrenutnoCitamFragment tabTrenutno=new TrenutnoCitamFragment();
-                return tabTrenutno;
+                return new TrenutnoCitamFragment();
             default:
-                return null;
+                throw new IllegalStateException();
 
 
         }

@@ -10,7 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 
-import com.air.foi.hr.mybook.adapters.PrikazKnjigaAdapter;
+import com.air.foi.hr.mybook.adapters.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class PreporuceneKnjigeActivity extends AppCompatActivity implements PrijedloziFragment.OnFragmentInteractionListener, TrenutnoCitamFragment.OnFragmentInteractionListener {
@@ -26,7 +26,7 @@ public class PreporuceneKnjigeActivity extends AppCompatActivity implements Prij
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager=(ViewPager)findViewById(R.id.viewPagerPreporuke);
-        final PrikazKnjigaAdapter adapter=new PrikazKnjigaAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        final ViewPagerAdapter adapter=new ViewPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
