@@ -29,12 +29,12 @@ public class PocetnaFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TabLayout tabLayout = (TabLayout)view.findViewById(R.id.tabLayoutPreporuke);
+        TabLayout tabLayout = (TabLayout)view.findViewById(R.id.tabLayoutPocetna);
         tabLayout.addTab(tabLayout.newTab().setText("Prijedlozi"));
         tabLayout.addTab(tabLayout.newTab().setText("Trenutno čitam"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager=(ViewPager)view.findViewById(R.id.viewPagerPreporuke);
+        final ViewPager viewPager=(ViewPager)view.findViewById(R.id.viewPagerPocetna);
         final ViewPagerAdapter adapter=new ViewPagerAdapter(getChildFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
