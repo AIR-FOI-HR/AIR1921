@@ -19,7 +19,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.air.foi.hr.mybook.PreporuceneKnjigeActivity;
 import com.air.foi.hr.mybook.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -117,7 +116,7 @@ public class LoginFragment extends Fragment {
                                         Toast.makeText(getActivity(), "Uspješna prijava " + firebaseUser.getEmail(), Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
 
-                                        Intent intent = new Intent(getContext(), PreporuceneKnjigeActivity.class);
+                                        Intent intent = new Intent(getContext(), PocetnaFragment.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
                                     } else {
