@@ -23,6 +23,8 @@ public class GlavniIzbornikActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView =findViewById(R.id.nav_view_glavna);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+
+       getSupportFragmentManager().beginTransaction().replace(R.id.frame_izbornik,new PocetnaFragment()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener=
