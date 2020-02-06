@@ -20,8 +20,8 @@
         android:layout_alignParentBottom="true"
         android:background="@color/colorLightPink"
         app:menu="@menu/glavna_navigacija"
-        app:itemIconTint="@color/colorDark"
-        app:itemTextColor="@color/colorDark"
+        app:itemIconTint="@drawable/nav_colors"
+        app:itemTextColor="@drawable/nav_colors"
         app:labelVisibilityMode="labeled"
        />
 
