@@ -4,4 +4,5 @@
     <color name="colorLightPink">#FDF7F9</color>
     <color name="colorLight">#FFFDFE</color>
     <color name="colorGray">#E3DEE0</color>
+    <color name="colorDarkGray">#7a636c</color>
 </resources>

@@ -36,8 +36,8 @@ public class PocetnaFragment extends Fragment {
 
         final ViewPager viewPager=(ViewPager)view.findViewById(R.id.viewPagerPocetna);
         final ViewPagerAdapter adapter=new ViewPagerAdapter(getChildFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+      //  viewPager.setAdapter(adapter);
+      //  viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
