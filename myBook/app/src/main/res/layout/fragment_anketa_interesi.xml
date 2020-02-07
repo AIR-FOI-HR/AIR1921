@@ -5,7 +5,7 @@
     android:id="@+id/anketaFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fragments.AnketaInteresiFragment">
+    tools:context=".fragments.AnketaInteresiFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

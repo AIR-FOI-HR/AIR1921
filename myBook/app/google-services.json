@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:619746687327:android:b31013c326bd9acb0b9eea",
         "android_client_info": {
-          "package_name": "com.air.foi.hr.mybook"
+          "package_name": "hr.foi.air.mybook"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "619746687327-v99uev65fgfinlrk93mdcjc4bqb000bg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.air.foi.hr.mybook",
+            "package_name": "hr.foi.air.mybook",
             "certificate_hash": "378404def2ff8c41eefa3769e2f08251d84b6687"
           }
         },

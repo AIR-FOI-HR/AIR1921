@@ -3,7 +3,7 @@
     android:id="@+id/zaboravljena_lozinka_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fragments.ZaboravljenaLozinkaFragment">
+    tools:context=".fragments.ZaboravljenaLozinkaFragment">
 
     <TextView
         android:id="@+id/text_zaboravljena_lozinka"
