@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_podaci"
+        android:icon="@drawable/ic_podaci_korisnika"
+        android:title="@string/podaci"/>
+
+    <item
+        android:id="@+id/nav_interesi"
+        android:icon="@drawable/ic_interesi"
+        android:title="@string/interesi"/>
+
+    <item
+        android:id="@+id/nav_znacke"
+        android:icon="@drawable/ic_znacke"
+        android:title="@string/znacke"/>
+
+    <item
+        android:id="@+id/nav_statsitika"
+        android:icon="@drawable/ic_statistika"
+        android:title="@string/statsitika"/>
+</menu>
