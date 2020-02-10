@@ -22,7 +22,15 @@ public class ProfilFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_profil,container,false);
+        final View v = inflater.inflate(R.layout.fragment_profil, container, false);
+
+        BottomNavigationView izbornik = (BottomNavigationView) v.findViewById(R.id.nav_view_profil);
+        izbornik.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        FragmentManager fragmentManager = getChildFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.frame_profil, new PodaciFragment()).commit();
+
+        return v;
     }
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
