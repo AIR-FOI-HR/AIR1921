@@ -32,6 +32,7 @@
     <string name="interesi">Interesi</string>
     <string name="znacke">Značke</string>
     <string name="statsitika">Statistika</string>
+    <string name="promijenite_lozinku">Promijenite lozinku</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
