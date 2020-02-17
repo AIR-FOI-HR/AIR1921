@@ -23,7 +23,7 @@ public class Home extends Application {
         if (firebaseUser != null) {
             Log.i(TAG, "User "+ firebaseUser.getEmail() +" is already logged in!");
 
-            Intent intent = new Intent(Home.this, PocetnaFragment.class);
+            Intent intent = new Intent(Home.this, GlavniIzbornikActivity.class);
             //TODO: FLAG_ACTIVITY_CLEAR_TASK -> Brisanje za tipku back (proučiti, što ako se klikne back i otvori app?)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
