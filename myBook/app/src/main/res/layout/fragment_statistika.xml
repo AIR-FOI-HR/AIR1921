@@ -40,4 +40,22 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/colorLightPink"
+        android:layout_below="@id/appBarLayout_statistika">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorDark"
+            android:text="@string/pogledaj_prema"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:id="@+id/txt_statistika_filter" />
+
+    </LinearLayout>
+
 </RelativeLayout>
