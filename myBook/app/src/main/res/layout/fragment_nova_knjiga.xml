@@ -159,5 +159,19 @@
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/txt_slika_naslovnice"
         app:layout_constraintEnd_toEndOf="@+id/txt_slika_naslovnice" />
-
+    <Button
+        android:id="@+id/button_dodaj_spremi"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/icon_slika_knjige"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="30dp"
+        android:background="@color/colorDark"
+        android:contentDescription="@string/spremi"
+        android:text="@string/spremi"
+        android:textColor="@color/colorLight" />
 </RelativeLayout>
