@@ -39,6 +39,7 @@
     <string name="dodaj_novu">Dodaj novu knjigu</string>
     <string name="autor_knjige">Autor knjige</string>
     <string name="god_izdavanja">Godina izdavanja</string>
+    <string name="zanr">Žanr</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
