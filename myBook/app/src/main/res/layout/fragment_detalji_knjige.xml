@@ -30,6 +30,21 @@
                 android:focusable="true"
                 android:foregroundGravity="left"
                 android:src="@drawable/ic_back" />
+
+            <TextView
+                android:id="@+id/txt_pocni_citati"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDark"
+                android:drawableTop="@drawable/ic_pocni_citati"
+                android:text="@string/pocni_citati"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foregroundGravity="right"/>
+            
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
