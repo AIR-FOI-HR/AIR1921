@@ -106,6 +106,18 @@
                 android:scaleY="0.7"
                 android:transformPivotX="0dp"
                 android:transformPivotY="0dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDark"
+                android:text="@string/komentari"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:id="@+id/txt_komentari" />
         </LinearLayout>
     </ScrollView>
 
