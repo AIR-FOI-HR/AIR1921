@@ -41,6 +41,7 @@
     <string name="god_izdavanja">Godina izdavanja</string>
     <string name="zanr">Žanr</string>
     <string name="pocni_citati">Počni čitati</string>
+    <string name="komentari">Komentari</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
