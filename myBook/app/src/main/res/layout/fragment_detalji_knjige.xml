@@ -65,8 +65,7 @@
                 android:id="@+id/img_slika_knjige"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:gravity="center"
-                android:src=""/>
+                android:gravity="center" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -79,12 +78,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/txt_detalji_opis"
-                android:textColor="@color/colorDark"
+                android:textColor="@color/colorDarkGray"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDark"
+                android:text="@string/ocjena_knjige"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:id="@+id/txt_ocjena" />
 
-
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rating_bar_detalji_knjige"
+                app:layout_constraintTop_toTopOf="@id/txt_ocjena"
+                android:layout_gravity="start"
+                android:layout_marginStart="20dp"
+                android:numStars="5"
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                android:transformPivotX="0dp"
+                android:transformPivotY="0dp"/>
         </LinearLayout>
     </ScrollView>
 
