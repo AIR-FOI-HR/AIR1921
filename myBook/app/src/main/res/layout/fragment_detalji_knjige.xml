@@ -118,6 +118,8 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:id="@+id/txt_komentari" />
+
+            <include layout="@layout/prikaz_komentara"/>
         </LinearLayout>
     </ScrollView>
 
