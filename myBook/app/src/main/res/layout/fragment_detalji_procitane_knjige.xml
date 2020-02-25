@@ -150,7 +150,20 @@
                 android:layout_marginStart="20dp"
                 android:textSize="18sp"
                 android:id="@+id/txt_komentar_korisnika" />
-        
+            <Button
+                android:id="@+id/btn_procitana_uredi"
+                android:layout_below="@+id/txt_komentar_procitana"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:background="@color/colorDark"
+                android:text="@string/uredi"
+                android:textAlignment="center"
+                android:textColor="@color/colorLight"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true" />
         </RelativeLayout>
     </ScrollView>
 
