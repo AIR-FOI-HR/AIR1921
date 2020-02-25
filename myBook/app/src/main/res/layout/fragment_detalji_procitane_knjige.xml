@@ -101,7 +101,56 @@
                     android:textSize="18sp" />
             </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDark"
+                android:text="@string/ocjena_knjige"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:id="@+id/txt_ocjena"
+                android:layout_below="@+id/ll_zavrsetak"/>
 
+
+            <RatingBar
+                android:layout_below="@id/txt_ocjena"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rating_bar_detalji_knjige"
+                app:layout_constraintTop_toTopOf="@id/txt_ocjena"
+                android:layout_gravity="start"
+                android:layout_marginStart="20dp"
+                android:numStars="5"
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                android:transformPivotX="0dp"
+                android:transformPivotY="0dp"/>
+
+            <TextView
+                android:layout_below="@id/rating_bar_detalji_knjige"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDark"
+                android:text="@string/komentar"
+                android:layout_gravity="start"
+                android:layout_marginStart="20dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:id="@+id/txt_komentar_procitana" />
+            <TextView
+                android:layout_below="@id/txt_komentar_procitana"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDarkGray"
+                android:text="@string/komentar"
+                android:layout_gravity="start"
+                android:layout_marginStart="20dp"
+                android:textSize="18sp"
+                android:id="@+id/txt_komentar_korisnika" />
+        
         </RelativeLayout>
     </ScrollView>
 
