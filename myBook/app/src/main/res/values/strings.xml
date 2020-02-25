@@ -45,6 +45,7 @@
     <string name="pocetak_citanja">Početak čitanja</string>
     <string name="zavrsetak_citanja">Završetak čitanja</string>
     <string name="komentar">Komentar</string>
+    <string name="uredi">Uredi</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
