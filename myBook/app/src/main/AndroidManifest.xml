@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="hr.foi.air.mybook">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="hr.foi.air.mybook.Home"
         android:allowBackup="true"
