@@ -6,16 +6,18 @@ public class Knjiga {
     String godinaIzdavanja;
     String sazetak;
     String autor;
+    String urlSlike;
 
     public Knjiga() {
     }
 
-    public Knjiga(String idKnjiga, String naziv, String godinaIzdavanja, String sazetak, String autor) {
+    public Knjiga(String idKnjiga, String naziv, String godinaIzdavanja, String sazetak, String autor, String urlSlike) {
         this.idKnjiga = idKnjiga;
         this.naziv = naziv;
         this.godinaIzdavanja = godinaIzdavanja;
         this.sazetak = sazetak;
         this.autor = autor;
+        this.urlSlike = urlSlike;
     }
 
     public String getIdKnjiga() {
@@ -57,4 +59,14 @@ public class Knjiga {
     public void setAutor(String autor) {
         this.autor = autor;
     }
+
+    public String getUrlSlike() {
+        return urlSlike;
+    }
+
+    public void setUrlSlike(String urlSlike) {
+        this.urlSlike = urlSlike;
+    }
+
+
 }
