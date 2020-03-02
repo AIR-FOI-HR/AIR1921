@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:619746687327:android:b31013c326bd9acb0b9eea",
         "android_client_info": {
-          "package_name": "hr.foi.air.mybook"
+          "package_name": "com.air.foi.hr.mybook"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "619746687327-v99uev65fgfinlrk93mdcjc4bqb000bg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "hr.foi.air.mybook",
+            "package_name": "com.air.foi.hr.mybook",
             "certificate_hash": "378404def2ff8c41eefa3769e2f08251d84b6687"
           }
         },
@@ -27,6 +27,43 @@
           "client_type": 1,
           "android_info": {
             "package_name": "com.air.foi.hr.mybook",
+            "certificate_hash": "669a4ede25de46cfb90998a3ab24c9a151bf8974"
+          }
+        },
+        {
+          "client_id": "619746687327-31j7phfuo6nim7l4ib7qama9305006ek.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBW-3NTO8XVTjQp5eAa58mio0cvccHIcpc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "619746687327-31j7phfuo6nim7l4ib7qama9305006ek.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619746687327:android:e2cce88ed2c7dfe40b9eea",
+        "android_client_info": {
+          "package_name": "hr.foi.air.mybook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "619746687327-gngd84gq0f858jkt4fjpcrfrpb10ibp1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hr.foi.air.mybook",
             "certificate_hash": "669a4ede25de46cfb90998a3ab24c9a151bf8974"
           }
         },

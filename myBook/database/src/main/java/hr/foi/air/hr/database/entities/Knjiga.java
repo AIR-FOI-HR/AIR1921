@@ -4,20 +4,20 @@ public class Knjiga {
     String idKnjiga;
     String naziv;
     String godinaIzdavanja;
-    String url;
     String sazetak;
-    String izdavacIdIzdavac;
+    String autor;
+    String urlSlike;
 
     public Knjiga() {
     }
 
-    public Knjiga(String idKnjiga, String naziv, String godinaIzdavanja, String url, String sazetak, String izdavacIdIzdavac) {
+    public Knjiga(String idKnjiga, String naziv, String godinaIzdavanja, String sazetak, String autor, String urlSlike) {
         this.idKnjiga = idKnjiga;
         this.naziv = naziv;
         this.godinaIzdavanja = godinaIzdavanja;
-        this.url = url;
         this.sazetak = sazetak;
-        this.izdavacIdIzdavac = izdavacIdIzdavac;
+        this.autor = autor;
+        this.urlSlike = urlSlike;
     }
 
     public String getIdKnjiga() {
@@ -44,14 +44,6 @@ public class Knjiga {
         this.godinaIzdavanja = godinaIzdavanja;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getSazetak() {
         return sazetak;
     }
@@ -60,11 +52,21 @@ public class Knjiga {
         this.sazetak = sazetak;
     }
 
-    public String getIzdavacIdIzdavac() {
-        return izdavacIdIzdavac;
+    public String getAutor() {
+        return autor;
     }
 
-    public void setIzdavacIdIzdavac(String izdavacIdIzdavac) {
-        this.izdavacIdIzdavac = izdavacIdIzdavac;
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
+
+    public String getUrlSlike() {
+        return urlSlike;
+    }
+
+    public void setUrlSlike(String urlSlike) {
+        this.urlSlike = urlSlike;
+    }
+
+
 }
