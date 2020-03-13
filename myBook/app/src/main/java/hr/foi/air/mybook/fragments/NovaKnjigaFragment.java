@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,10 +40,13 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import hr.foi.air.hr.database.entities.Knjiga;
+import hr.foi.air.hr.database.entities.Zanr;
+import hr.foi.air.hr.database.entities.ZanrKnjiga;
 import hr.foi.air.mybook.R;
 
 import static android.app.Activity.RESULT_OK;
@@ -56,7 +61,6 @@ public class NovaKnjigaFragment extends Fragment {
     private EditText godIzdavanja;
     private EditText opis;
     private Spinner zanr;
-    private Button spremi;
     private ImageView dodajSliku;
     private ProgressBar dodajKnjiguProgress;
 
@@ -64,12 +68,13 @@ public class NovaKnjigaFragment extends Fragment {
     private StorageReference mStorageRef;
     private StorageTask uploadTask;
 
-    ValueEventListener listener;
-    ArrayAdapter<String> adapter;
-    ArrayList<String> spinnerDataList;
+    private ValueEventListener listener;
+    private ArrayAdapter<Zanr> adapter;
+    private ArrayList<Zanr> spinnerDataList;
 
     private DatabaseReference databaseKnjige;
     private DatabaseReference databaseZanrovi;
+    private DatabaseReference databaseZanrKnjiga;
 
     public NovaKnjigaFragment(){
 
@@ -85,6 +90,7 @@ public class NovaKnjigaFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        databaseZanrKnjiga = FirebaseDatabase.getInstance().getReference("zanr_knjige");
         databaseKnjige = FirebaseDatabase.getInstance().getReference("knjiga");
         databaseZanrovi = FirebaseDatabase.getInstance().getReference("zanr");
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
@@ -94,12 +100,12 @@ public class NovaKnjigaFragment extends Fragment {
         godIzdavanja = view.findViewById(R.id.txt_dodaj_god_izdavanja);
         opis = view.findViewById(R.id.txt_dodaj_opis);
         zanr = view.findViewById(R.id.txt_dodaj_žanr);
-        spremi = view.findViewById(R.id.button_dodaj_spremi);
+        Button spremi = view.findViewById(R.id.button_dodaj_spremi);
         dodajSliku = view.findViewById(R.id.icon_slika_knjige);
         dodajKnjiguProgress = view.findViewById(R.id.dodajKnjiguProgress);
 
         spinnerDataList = new ArrayList<>();
-        adapter = new ArrayAdapter<>(getActivity(),
+        adapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()),
                 android.R.layout.simple_spinner_dropdown_item, spinnerDataList);
         zanr.setAdapter(adapter);
         retrieveData();
@@ -110,7 +116,7 @@ public class NovaKnjigaFragment extends Fragment {
                 if (uploadTask != null && uploadTask.isInProgress()){
                     Toast.makeText(getActivity(),"Upload u tijeku", Toast.LENGTH_SHORT).show();
                 }else {
-                    uploadSliku();
+                    provjeraUnosa();
                     Log.i(TAG, "Spremi clicked!");
                 }
             }
@@ -148,7 +154,8 @@ public class NovaKnjigaFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot item:dataSnapshot.getChildren()){
-                    spinnerDataList.add(item.child("naziv").getValue().toString());
+                    Zanr zanr = item.getValue(Zanr.class);
+                    spinnerDataList.add(zanr);
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -159,13 +166,13 @@ public class NovaKnjigaFragment extends Fragment {
         });
     }
 
-    private void dodajKnjigu(String url){
+    private void provjeraUnosa(){
         final String naziv = this.naziv.getText().toString().trim();
         final String autor = this.autor.getText().toString().trim();
         final String godIzdavanja = this.godIzdavanja.getText().toString().trim();
         final String opis = this.opis.getText().toString().trim();
 
-        String regex = "^\\d{4}$";
+        String regex = "^\\d{1,4}$";
         Pattern pattern = Pattern.compile(regex);
 
         if (naziv.isEmpty() || autor.isEmpty() || godIzdavanja.isEmpty() || opis.isEmpty())
@@ -173,14 +180,42 @@ public class NovaKnjigaFragment extends Fragment {
         else {
             Matcher matcher = pattern.matcher(godIzdavanja);
             if (matcher.matches()){
-                String id = databaseKnjige.push().getKey();
-                Knjiga knjiga = new Knjiga(id, naziv, godIzdavanja, opis, autor, url);
-                databaseKnjige.child(id).setValue(knjiga);
-                Toast.makeText(getActivity(),"Spremljeno", Toast.LENGTH_LONG).show();}
+                uploadSliku();
+            }
             else{
                 Toast.makeText(getActivity(),"Godina je pogrešnog formata", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    private void dodajKnjigu(String url){
+        final String naziv = this.naziv.getText().toString().trim();
+        final String autor = this.autor.getText().toString().trim();
+        final String godIzdavanja = this.godIzdavanja.getText().toString().trim();
+        final String opis = this.opis.getText().toString().trim();
+
+        Zanr selectedZanr = (Zanr) zanr.getSelectedItem();
+        final String selectedZanrId = selectedZanr.getIdZanr();
+
+//        String regex = "^\\d{1,4}$";
+//        Pattern pattern = Pattern.compile(regex);
+//
+//        if (naziv.isEmpty() || autor.isEmpty() || godIzdavanja.isEmpty() || opis.isEmpty())
+//            Toast.makeText(getActivity(),"Nisu popunjena sva polja", Toast.LENGTH_LONG).show();
+//        else {
+//            Matcher matcher = pattern.matcher(godIzdavanja);
+//            if (matcher.matches()){
+                String id = databaseKnjige.push().getKey();
+                Knjiga knjiga = new Knjiga(id, naziv, godIzdavanja, opis, autor, url);
+                databaseKnjige.child(id).setValue(knjiga);
+                ZanrKnjiga zanrKnjiga = new ZanrKnjiga(selectedZanrId,id);
+                databaseZanrKnjiga.child(databaseZanrKnjiga.push().getKey()).setValue(zanrKnjiga);
+                Toast.makeText(getActivity(),"Spremljeno", Toast.LENGTH_LONG).show();
+//            }
+//            else{
+//                Toast.makeText(getActivity(),"Godina je pogrešnog formata", Toast.LENGTH_LONG).show();
+//            }
+//        }
     }
 
     private String getFileExtension (Uri uri){
@@ -229,5 +264,3 @@ public class NovaKnjigaFragment extends Fragment {
         }
     }
 }
-
-//"autori": ["autor1", "autor2", ... ]
