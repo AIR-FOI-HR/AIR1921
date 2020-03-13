@@ -14,6 +14,11 @@ public class Zanr {
         this.opis = opis;
     }
 
+    @Override
+    public String toString() {
+        return naziv;
+    }
+
     public String getIdZanr() {
         return idZanr;
     }
