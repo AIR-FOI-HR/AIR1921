@@ -59,4 +59,15 @@ public class Korisnik {
     public void setDatumRodenja(String datumRodenja) {
         this.datumRodenja = datumRodenja;
     }
+
+    @Override
+    public String toString() {
+        return "Korisnik{" +
+                "korime='" + korime + '\'' +
+                ", ime='" + ime + '\'' +
+                ", prezime='" + prezime + '\'' +
+                ", mail='" + mail + '\'' +
+                ", datumRodenja='" + datumRodenja + '\'' +
+                '}';
+    }
 }
