@@ -52,5 +52,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="upisite_kljucne">Upišite ključne riječi:</string>
     <string name="filtriraj_prema">Filtriraj prema:</string>
+    <string name="promjenite_lozinku">Promjenite lozinku</string>
+    <string name="ime_i_prezime">Ime i prezime</string>
+    <string name="mail_adresa">e-mail adresa</string>
 
 </resources>

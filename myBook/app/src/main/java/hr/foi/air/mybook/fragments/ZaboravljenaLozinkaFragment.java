@@ -49,7 +49,10 @@ public class ZaboravljenaLozinkaFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Toolbar toolbar = view.getRootView().findViewById(R.id.toolbar);
-        toolbar.setTitle("Zaboravljena lozinka");
+            try {
+                toolbar.setTitle("Zaboravljena lozinka");
+            }catch (Exception e){}
+
 
         progressBar = view.getRootView().findViewById(R.id.progressBar);
 
