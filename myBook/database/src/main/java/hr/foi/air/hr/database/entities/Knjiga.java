@@ -68,5 +68,15 @@ public class Knjiga {
         this.urlSlike = urlSlike;
     }
 
-
+    @Override
+    public String toString() {
+        return "Knjiga{" +
+                "idKnjiga='" + idKnjiga + '\'' +
+                ", naziv='" + naziv + '\'' +
+                ", godinaIzdavanja='" + godinaIzdavanja + '\'' +
+                ", sazetak='" + sazetak + '\'' +
+                ", autor='" + autor + '\'' +
+                ", urlSlike='" + urlSlike + '\'' +
+                '}';
+    }
 }

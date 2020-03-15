@@ -3,17 +3,19 @@ package hr.foi.air.hr.database.entities;
 public class Citanje {
     String korisnikKorime;
     String knjigaIdKnjiga;
-    String datum;
-    Integer ocjena;
+    String datumPocetka;
+    String datumKraja;
+    Float ocjena;
     String komentar;
 
     public Citanje() {
     }
 
-    public Citanje(String korisnikKorime, String knjigaIdKnjiga, String datum, Integer ocjena, String komentar) {
+    public Citanje(String korisnikKorime, String knjigaIdKnjiga, String datumPocetka, String datumKraja, Float ocjena, String komentar) {
         this.korisnikKorime = korisnikKorime;
         this.knjigaIdKnjiga = knjigaIdKnjiga;
-        this.datum = datum;
+        this.datumPocetka = datumPocetka;
+        this.datumKraja = datumKraja;
         this.ocjena = ocjena;
         this.komentar = komentar;
     }
@@ -34,19 +36,27 @@ public class Citanje {
         this.knjigaIdKnjiga = knjigaIdKnjiga;
     }
 
-    public String getDatum() {
-        return datum;
+    public String getDatumPocetka() {
+        return datumPocetka;
     }
 
-    public void setDatum(String datum) {
-        this.datum = datum;
+    public void setDatumPocetka(String datumPocetka) {
+        this.datumPocetka = datumPocetka;
     }
 
-    public Integer getOcjena() {
+    public String getDatumKraja() {
+        return datumKraja;
+    }
+
+    public void setDatumKraja(String datumKraja) {
+        this.datumKraja = datumKraja;
+    }
+
+    public float getOcjena() {
         return ocjena;
     }
 
-    public void setOcjena(Integer ocjena) {
+    public void setOcjena(Float ocjena) {
         this.ocjena = ocjena;
     }
 
@@ -56,5 +66,17 @@ public class Citanje {
 
     public void setKomentar(String komentar) {
         this.komentar = komentar;
+    }
+
+    @Override
+    public String toString() {
+        return "Citanje{" +
+                "korisnikKorime='" + korisnikKorime + '\'' +
+                ", knjigaIdKnjiga='" + knjigaIdKnjiga + '\'' +
+                ", datumPocetka='" + datumPocetka + '\'' +
+                ", datumKraja='" + datumKraja + '\'' +
+                ", ocjena=" + ocjena +
+                ", komentar='" + komentar + '\'' +
+                '}';
     }
 }

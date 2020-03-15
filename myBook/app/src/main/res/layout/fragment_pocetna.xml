@@ -14,8 +14,12 @@
         android:background="@color/colorLightPink"
         android:minHeight="?attr/actionBarSize"/>
 
-    <androidx.viewpager.widget.ViewPager
+<!--    <androidx.viewpager.widget.ViewPager-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="fill_parent"-->
+<!--        android:id="@+id/viewPagerPocetna"/>-->
+    <FrameLayout
+        android:id="@+id/framePocetna"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/viewPagerPocetna"/>
+        android:layout_height="match_parent" />
 </LinearLayout>

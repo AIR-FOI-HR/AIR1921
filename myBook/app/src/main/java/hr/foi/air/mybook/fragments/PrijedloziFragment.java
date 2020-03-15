@@ -1,66 +1,55 @@
 package hr.foi.air.mybook.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
+import hr.foi.air.hr.database.entities.Citanje;
+import hr.foi.air.hr.database.entities.Knjiga;
 import hr.foi.air.mybook.R;
+import hr.foi.air.mybook.objects.BookListObject;
+import hr.foi.air.mybook.recyclerview.BookRecyclerAdapter;
+import hr.foi.air.mybook.util.BookManager;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link PrijedloziFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link PrijedloziFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class PrijedloziFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private static final String TAG = "PrijedloziFragment";
 
-    private OnFragmentInteractionListener mListener;
+    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReferenceNew;
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+
+    private ArrayList<BookListObject> books = new ArrayList<>();
+
+    BookManager bookManager = new BookManager();
 
     public PrijedloziFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PrijedloziFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PrijedloziFragment newInstance(String param1, String param2) {
-        PrijedloziFragment fragment = new PrijedloziFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -70,42 +59,92 @@ public class PrijedloziFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_prijedlozi, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("knjiga");
+        databaseReferenceNew = FirebaseDatabase.getInstance().getReference("citanje");
+
+        Log.i(TAG, "Retrieve books from DB");
+        getAllBooks(databaseReference);
+
+        recyclerView = view.findViewById(R.id.recycler_preporuke);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
+        adapter = new BookRecyclerAdapter(view.getContext(), books);
+
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void getAllBooks(DatabaseReference databaseReference){
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                books.clear();
+                for (DataSnapshot data: dataSnapshot.getChildren()) {
+                    final Knjiga book = data.getValue(Knjiga.class);
+                    Log.i(TAG, book.toString());
+
+                    final ArrayList<Citanje> citanjeArrayList = new ArrayList<>();
+
+                    databaseReferenceNew.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            citanjeArrayList.clear();
+                            for (DataSnapshot data: dataSnapshot.getChildren()) {
+                                Citanje citanje = data.getValue(Citanje.class);
+                                if (citanje.getKnjigaIdKnjiga().equals(book.getIdKnjiga())) {
+                                    Log.i(TAG, citanje.toString());
+                                    citanjeArrayList.add(citanje);
+                                }
+                            }
+                            calculateRating(citanjeArrayList, book);
+                            showData(books);
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        }
+                    });
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void calculateRating(ArrayList<Citanje> citanjeArrayList, Knjiga book) {
+        BookListObject bookListObject = new BookListObject();
+
+        bookListObject.setIdKnjiga(book.getIdKnjiga());
+        bookListObject.setAutor(book.getAutor());
+        bookListObject.setNaziv(book.getNaziv());
+        bookListObject.setSazetak(book.getSazetak());
+        bookListObject.setUrlSlike(book.getUrlSlike());
+
+        if (citanjeArrayList.isEmpty()) {
+            Log.i(TAG, "No rating");
+            bookListObject.setOcjena(0);
         }
+        else {
+            float sum = 0;
+            for (Citanje citanje : citanjeArrayList) {
+                sum += citanje.getOcjena();
+                Log.i(TAG, "Current sum: " + sum);
+            }
+            float rating = sum/citanjeArrayList.size();
+            Log.i(TAG, "Rating: " + rating);
+            bookListObject.setOcjena(rating);
+        }
+
+        books.add(bookListObject);
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
+    private void showData(ArrayList<BookListObject> books) {
+        adapter = new BookRecyclerAdapter(getContext(), books);
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        recyclerView.setAdapter(adapter);
     }
 }

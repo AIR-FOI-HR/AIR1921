@@ -22,25 +22,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="100dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:text="@string/naslov_knjige"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/colorDark"
             android:textIsSelectable="false"
 
             />
+
         <TextView
             android:id="@+id/opis_knjige"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/naslov_knjige"
             android:layout_marginStart="100dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="9dp"
             android:text="@string/opis_knjige"
             android:textAppearance="@style/TextAppearance.Compat.Notification"
             android:textColor="@color/colorDark"
-            android:textIsSelectable="false"
 
-            />
+            android:textIsSelectable="false" />
 
         <ImageView
             android:id="@+id/slika_knjige"
@@ -51,23 +52,25 @@
 
         <TextView
             android:id="@+id/ocjena_text"
+            android:textColor="@color/colorDark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="300dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="8dp"
             android:text="@string/ocjena_knjige" />
 
         <RatingBar
             android:id="@+id/rating_bar_ocjene"
             style="@style/customRatingBar"
+            android:progressTint="@color/colorDark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/ocjena_text"
+            android:layout_below="@+id/ocjena_text"
             android:layout_marginStart="300dp"
-            android:layout_marginTop="70dp"
             android:numStars="5"
+            android:stepSize="0.1"
 
-         />
+            app:layout_constraintTop_toTopOf="@id/ocjena_text" />
 
 
     </RelativeLayout>
