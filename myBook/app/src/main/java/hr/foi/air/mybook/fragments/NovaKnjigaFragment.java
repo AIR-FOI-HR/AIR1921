@@ -6,13 +6,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,7 +66,6 @@ public class NovaKnjigaFragment extends Fragment {
     private StorageReference mStorageRef;
     private StorageTask uploadTask;
 
-    private ValueEventListener listener;
     private ArrayAdapter<Zanr> adapter;
     private ArrayList<Zanr> spinnerDataList;
 
@@ -150,15 +147,16 @@ public class NovaKnjigaFragment extends Fragment {
     }
 
     private void retrieveData(){
-        listener = databaseZanrovi.addValueEventListener(new ValueEventListener() {
+        ValueEventListener listener = databaseZanrovi.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot item:dataSnapshot.getChildren()){
+                for (DataSnapshot item : dataSnapshot.getChildren()) {
                     Zanr zanr = item.getValue(Zanr.class);
                     spinnerDataList.add(zanr);
                 }
                 adapter.notifyDataSetChanged();
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -197,25 +195,12 @@ public class NovaKnjigaFragment extends Fragment {
         Zanr selectedZanr = (Zanr) zanr.getSelectedItem();
         final String selectedZanrId = selectedZanr.getIdZanr();
 
-//        String regex = "^\\d{1,4}$";
-//        Pattern pattern = Pattern.compile(regex);
-//
-//        if (naziv.isEmpty() || autor.isEmpty() || godIzdavanja.isEmpty() || opis.isEmpty())
-//            Toast.makeText(getActivity(),"Nisu popunjena sva polja", Toast.LENGTH_LONG).show();
-//        else {
-//            Matcher matcher = pattern.matcher(godIzdavanja);
-//            if (matcher.matches()){
-                String id = databaseKnjige.push().getKey();
-                Knjiga knjiga = new Knjiga(id, naziv, godIzdavanja, opis, autor, url);
-                databaseKnjige.child(id).setValue(knjiga);
-                ZanrKnjiga zanrKnjiga = new ZanrKnjiga(selectedZanrId,id);
-                databaseZanrKnjiga.child(databaseZanrKnjiga.push().getKey()).setValue(zanrKnjiga);
-                Toast.makeText(getActivity(),"Spremljeno", Toast.LENGTH_LONG).show();
-//            }
-//            else{
-//                Toast.makeText(getActivity(),"Godina je pogrešnog formata", Toast.LENGTH_LONG).show();
-//            }
-//        }
+        String id = databaseKnjige.push().getKey();
+        Knjiga knjiga = new Knjiga(id, naziv, godIzdavanja, opis, autor, url);
+        databaseKnjige.child(id).setValue(knjiga);
+        ZanrKnjiga zanrKnjiga = new ZanrKnjiga(selectedZanrId,id);
+        databaseZanrKnjiga.child(databaseZanrKnjiga.push().getKey()).setValue(zanrKnjiga);
+        Toast.makeText(getActivity(),"Spremljeno", Toast.LENGTH_LONG).show();
     }
 
     private String getFileExtension (Uri uri){
@@ -241,8 +226,17 @@ public class NovaKnjigaFragment extends Fragment {
                             },1000);
 
                             Toast.makeText(getActivity(), "Uspješan upload slike", Toast.LENGTH_SHORT).show();
-                            String URL =  taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-                            dodajKnjigu(URL);
+                            String URL =  taskSnapshot.getMetadata().getReference().getPath();
+
+                            final StorageReference ref = FirebaseStorage.getInstance().getReference().child(URL);
+                            ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    Log.i(TAG, "URL: "+ uri.toString());
+                                    dodajKnjigu(uri.toString());
+                                }
+                            });
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
