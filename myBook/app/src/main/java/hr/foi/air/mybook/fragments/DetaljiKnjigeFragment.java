@@ -15,7 +15,13 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import hr.foi.air.hr.database.entities.Citanje;
+import hr.foi.air.hr.database.entities.Korisnik;
 import hr.foi.air.mybook.R;
 
 
@@ -34,6 +40,8 @@ public class DetaljiKnjigeFragment extends Fragment {
 
     private DatabaseReference databaseReferenceCitanje;
     private DatabaseReference databaseReferenceKorisnik;
+
+    private ArrayList<Korisnik> korisnici = new ArrayList<>();
     public DetaljiKnjigeFragment() {
         // Required empty public constructor
     }
@@ -49,9 +57,15 @@ public class DetaljiKnjigeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        String firebaseKorisnik;
 
         databaseReferenceCitanje = FirebaseDatabase.getInstance().getReference("citanje");
         databaseReferenceKorisnik = FirebaseDatabase.getInstance().getReference("korisnik");
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseKorisnik = firebaseAuth.getCurrentUser().getEmail();
+
+        dohvatiKorisnickoIme(firebaseKorisnik);
+
 
         pocniCitati = view.findViewById(R.id.txt_pocni_citati);
         slikaKnjige = view.findViewById(R.id.img_slika_knjige);
@@ -87,4 +101,29 @@ public class DetaljiKnjigeFragment extends Fragment {
         }
 
     }
+
+    private void dohvatiKorisnickoIme(final String korisnikMail) {
+        databaseReferenceKorisnik.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                korisnici.clear();
+                for (DataSnapshot item : dataSnapshot.getChildren()) {
+                    Korisnik korisnik = item.getValue(Korisnik.class);
+                    korisnici.add(korisnik);
+                }
+                for (Korisnik korisnik : korisnici) {
+                    Log.e(TAG, "pronađiKorisnickoIme: " + korisnik);
+                    if (korisnik.getMail().equals(korisnikMail)) {
+                        korisnickoIme = korisnik.getKorime();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 }
