@@ -62,6 +62,13 @@ public class BookRecyclerAdapter extends RecyclerView.Adapter<BookRecyclerAdapte
                 .load(currentBook.getUrlSlike())
                 .into(holder.bookImage);
         holder.bookRating.setRating(currentBook.getOcjena());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override
