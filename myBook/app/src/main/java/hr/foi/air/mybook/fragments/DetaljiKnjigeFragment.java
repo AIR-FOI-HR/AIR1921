@@ -74,6 +74,7 @@ public class DetaljiKnjigeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        final TextView pocniCitati;
         String firebaseKorisnik;
 
         databaseReferenceCitanje = FirebaseDatabase.getInstance().getReference("citanje");
@@ -99,6 +100,16 @@ public class DetaljiKnjigeFragment extends Fragment {
 
         prikaziDetaljeKnjige();
         dohvatiKomentare(idKnjige);
+
+        pocniCitati.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "Pocni citati clicked");
+
+                pocniCitati();
+
+            }
+        });
 
 
     }
@@ -181,5 +192,14 @@ public class DetaljiKnjigeFragment extends Fragment {
         recyclerViewKomentari.setAdapter(adapterKomentari);
     }
 
+
+    private void pocniCitati() {
+
+        final String datumPocetka = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+        Citanje pocnicitanje = new Citanje(korisnickoIme, idKnjige, datumPocetka, "", 0f, "");
+        databaseReferenceCitanje.child(databaseReferenceCitanje.push().getKey()).setValue(pocnicitanje);
+        Toast.makeText(getActivity(), "Počeli ste čitati knjigu " + naziv, Toast.LENGTH_SHORT).show();
+
+    }
 
 }
