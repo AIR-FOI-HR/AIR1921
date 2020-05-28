@@ -120,7 +120,11 @@
                 android:textStyle="bold"
                 android:id="@+id/txt_komentari" />
 
-            <include layout="@layout/prikaz_komentara"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_detalji_komentari"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"/>
         </LinearLayout>
     </ScrollView>
 
