@@ -22,6 +22,9 @@ public class DetaljiKnjigeFragment extends Fragment {
 
     private static final String TAG = "DetaljiKnjigeFragment";
 
+    private String korisnickoIme;
+    private String idKnjige, naziv;
+
     private ImageView slikaKnjige;
     private TextView nazivKnjige;
     private TextView opisKnjige;
@@ -51,6 +54,31 @@ public class DetaljiKnjigeFragment extends Fragment {
         opisKnjige = view.findViewById(R.id.txt_detalji_opis);
         ocjenaKnjige = view.findViewById(R.id.rating_bar_detalji_knjige);
 
+        prikaziDetaljeKnjige();
+
+    }
+
+    private void prikaziDetaljeKnjige() {
+
+        String opis, autor, slika;
+        Float ocjena;
+
+        if (getArguments() != null) {
+            idKnjige = getArguments().getString("id");
+            naziv = getArguments().getString("naziv");
+            opis = getArguments().getString("opis");
+            autor = getArguments().getString("autor");
+            slika = getArguments().getString("slika");
+            ocjena = getArguments().getFloat("ocjena");
+
+            nazivKnjige.setText(naziv);
+            autorKnjige.setText(autor);
+            opisKnjige.setText(opis);
+            Picasso.with(getContext())
+                    .load(slika)
+                    .into(slikaKnjige);
+            ocjenaKnjige.setRating(ocjena);
+        }
 
     }
 }
