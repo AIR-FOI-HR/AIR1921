@@ -15,6 +15,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
 import hr.foi.air.mybook.R;
 
 
@@ -31,6 +32,8 @@ public class DetaljiKnjigeFragment extends Fragment {
     private TextView autorKnjige;
     private RatingBar ocjenaKnjige;
 
+    private DatabaseReference databaseReferenceCitanje;
+    private DatabaseReference databaseReferenceKorisnik;
     public DetaljiKnjigeFragment() {
         // Required empty public constructor
     }
@@ -46,6 +49,9 @@ public class DetaljiKnjigeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+        databaseReferenceCitanje = FirebaseDatabase.getInstance().getReference("citanje");
+        databaseReferenceKorisnik = FirebaseDatabase.getInstance().getReference("korisnik");
 
         pocniCitati = view.findViewById(R.id.txt_pocni_citati);
         slikaKnjige = view.findViewById(R.id.img_slika_knjige);
