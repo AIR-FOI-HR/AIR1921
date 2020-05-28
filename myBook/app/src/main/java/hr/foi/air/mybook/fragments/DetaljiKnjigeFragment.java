@@ -63,7 +63,6 @@ public class DetaljiKnjigeFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -107,11 +106,8 @@ public class DetaljiKnjigeFragment extends Fragment {
                 Log.i(TAG, "Pocni citati clicked");
 
                 pocniCitati();
-
             }
         });
-
-
     }
 
     private void prikaziDetaljeKnjige() {
@@ -135,7 +131,6 @@ public class DetaljiKnjigeFragment extends Fragment {
                     .into(slikaKnjige);
             ocjenaKnjige.setRating(ocjena);
         }
-
     }
 
     private void dohvatiKorisnickoIme(final String korisnikMail) {
@@ -154,7 +149,6 @@ public class DetaljiKnjigeFragment extends Fragment {
                     }
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -176,7 +170,6 @@ public class DetaljiKnjigeFragment extends Fragment {
                         }
                     }
                 }
-
             }
 
             @Override
@@ -186,12 +179,10 @@ public class DetaljiKnjigeFragment extends Fragment {
         });
     }
 
-
     private void prikaziKomentare(ArrayList<Citanje> komentari) {
         adapterKomentari = new PrikazKomentaraAdapter(komentari, getContext());
         recyclerViewKomentari.setAdapter(adapterKomentari);
     }
-
 
     private void pocniCitati() {
 
@@ -201,5 +192,4 @@ public class DetaljiKnjigeFragment extends Fragment {
         Toast.makeText(getActivity(), "Počeli ste čitati knjigu " + naziv, Toast.LENGTH_SHORT).show();
 
     }
-
 }
