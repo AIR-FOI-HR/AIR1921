@@ -20,9 +20,20 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import hr.foi.air.hr.database.entities.Citanje;
 import hr.foi.air.hr.database.entities.Korisnik;
 import hr.foi.air.mybook.R;
+import hr.foi.air.mybook.adapters.PrikazKomentaraAdapter;
 
 
 public class DetaljiKnjigeFragment extends Fragment {
@@ -38,10 +49,16 @@ public class DetaljiKnjigeFragment extends Fragment {
     private TextView autorKnjige;
     private RatingBar ocjenaKnjige;
 
+    private PrikazKomentaraAdapter adapterKomentari;
+    private RecyclerView recyclerViewKomentari;
+
     private DatabaseReference databaseReferenceCitanje;
     private DatabaseReference databaseReferenceKorisnik;
 
     private ArrayList<Korisnik> korisnici = new ArrayList<>();
+    private ArrayList<Citanje> komentari = new ArrayList<>();
+
+
     public DetaljiKnjigeFragment() {
         // Required empty public constructor
     }
@@ -66,6 +83,9 @@ public class DetaljiKnjigeFragment extends Fragment {
 
         dohvatiKorisnickoIme(firebaseKorisnik);
 
+        recyclerViewKomentari = view.findViewById(R.id.recycler_detalji_komentari);
+        recyclerViewKomentari.setHasFixedSize(true);
+        recyclerViewKomentari.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
         pocniCitati = view.findViewById(R.id.txt_pocni_citati);
         slikaKnjige = view.findViewById(R.id.img_slika_knjige);
@@ -74,7 +94,12 @@ public class DetaljiKnjigeFragment extends Fragment {
         opisKnjige = view.findViewById(R.id.txt_detalji_opis);
         ocjenaKnjige = view.findViewById(R.id.rating_bar_detalji_knjige);
 
+        adapterKomentari = new PrikazKomentaraAdapter(komentari, view.getContext());
+        recyclerViewKomentari.setAdapter(adapterKomentari);
+
         prikaziDetaljeKnjige();
+        dohvatiKomentare(idKnjige);
+
 
     }
 
@@ -125,5 +150,36 @@ public class DetaljiKnjigeFragment extends Fragment {
             }
         });
     }
+
+    private void dohvatiKomentare(final String idKnjige) {
+        databaseReferenceCitanje.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                komentari.clear();
+                for (DataSnapshot item : dataSnapshot.getChildren()) {
+                    Citanje citanje = item.getValue(Citanje.class);
+                    if (citanje.getKnjigaIdKnjiga().equals(idKnjige)) {
+                        if (!"".equals(citanje.getKomentar())) {
+                            komentari.add(citanje);
+                            prikaziKomentare(komentari);
+                        }
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+    private void prikaziKomentare(ArrayList<Citanje> komentari) {
+        adapterKomentari = new PrikazKomentaraAdapter(komentari, getContext());
+        recyclerViewKomentari.setAdapter(adapterKomentari);
+    }
+
 
 }
