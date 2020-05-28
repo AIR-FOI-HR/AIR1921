@@ -99,6 +99,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/rating_bar_detalji_knjige"
                 app:layout_constraintTop_toTopOf="@id/txt_ocjena"
+                android:progressTint="@color/colorDark"
                 android:layout_gravity="start"
                 android:layout_marginStart="20dp"
                 android:numStars="5"
