@@ -18,7 +18,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/naslov_knjige"
+            android:id="@+id/naslov_knjige_statistika"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="100dp"
@@ -31,10 +31,10 @@
             />
 
         <TextView
-            android:id="@+id/autor_knjige"
+            android:id="@+id/autor_knjige_statistika"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/naslov_knjige"
+            android:layout_below="@+id/naslov_knjige_statistika"
             android:layout_marginStart="100dp"
             android:layout_marginTop="3dp"
             android:text="@string/autor_knjige"
@@ -42,10 +42,10 @@
             android:textColor="@color/colorDark"
             android:textIsSelectable="false" />
         <TextView
-            android:id="@+id/pocetakcitanja"
+            android:id="@+id/pocetakcitanja_statistika"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/autor_knjige"
+            android:layout_below="@+id/autor_knjige_statistika"
             android:layout_marginStart="100dp"
             android:layout_marginTop="3dp"
             android:text="@string/pocetak_citanja"
@@ -53,10 +53,10 @@
             android:textColor="@color/colorDarkGray"
             android:textIsSelectable="false" />
         <TextView
-            android:id="@+id/zavrsetakcitanja"
+            android:id="@+id/zavrsetakcitanja_statistika"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/pocetakcitanja"
+            android:layout_below="@+id/pocetakcitanja_statistika"
             android:layout_marginStart="100dp"
             android:text="@string/zavrsetak_citanja"
             android:textAppearance="@style/TextAppearance.Compat.Notification"
@@ -64,7 +64,7 @@
             android:textIsSelectable="false" />
 
         <ImageView
-            android:id="@+id/slika_knjige"
+            android:id="@+id/slika_knjige_statistika"
             android:layout_width="94dp"
             android:layout_height="105dp"
             android:contentDescription="@string/slika_knjige"
@@ -80,7 +80,7 @@
             android:text="@string/ocjena_knjige" />
 
         <RatingBar
-            android:id="@+id/rating_bar_ocjene"
+            android:id="@+id/rating_bar_ocjene_statistika"
             style="@style/customRatingBar"
             android:progressTint="@color/colorDark"
             android:layout_width="wrap_content"
