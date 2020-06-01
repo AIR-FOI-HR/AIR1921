@@ -1,6 +1,7 @@
 package hr.foi.air.mybook.recyclerview;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -17,6 +19,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import hr.foi.air.mybook.R;
+import hr.foi.air.mybook.fragments.DetaljiKnjigeFragment;
 import hr.foi.air.mybook.objects.BookListObject;
 
 public class BookRecyclerAdapter extends RecyclerView.Adapter<BookRecyclerAdapter.ViewHolder> {
@@ -52,8 +55,8 @@ public class BookRecyclerAdapter extends RecyclerView.Adapter<BookRecyclerAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        BookListObject currentBook = allBooks.get(position);
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        final BookListObject currentBook = allBooks.get(position);
         Log.i("MSG", currentBook.getNaziv());
 
         holder.bookName.setText(currentBook.getNaziv());
@@ -62,6 +65,29 @@ public class BookRecyclerAdapter extends RecyclerView.Adapter<BookRecyclerAdapte
                 .load(currentBook.getUrlSlike())
                 .into(holder.bookImage);
         holder.bookRating.setRating(currentBook.getOcjena());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DetaljiKnjigeFragment detaljiKnjigeFragment = new DetaljiKnjigeFragment();
+                Bundle arguments = new Bundle();
+                arguments.putString("id", currentBook.getIdKnjiga());
+                arguments.putString("naziv", currentBook.getNaziv());
+                arguments.putString("opis", currentBook.getSazetak());
+                arguments.putString("autor", currentBook.getAutor());
+                arguments.putString("slika", currentBook.getUrlSlike());
+                arguments.putFloat("ocjena",currentBook.getOcjena());
+                detaljiKnjigeFragment.setArguments(arguments);
+
+                AppCompatActivity activity=(AppCompatActivity)view.getContext();
+                        activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frame_izbornik, detaljiKnjigeFragment)
+                        .addToBackStack("")
+                        .commit();
+
+            }
+        });
     }
 
     @Override
