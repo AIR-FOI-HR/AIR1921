@@ -48,29 +48,6 @@
         android:background="@color/colorLightPink"
         android:layout_below="@id/appBarLayout_statistika">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:textColor="@color/colorDark"
-            android:text="@string/pogledaj_prema"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/txt_statistika_filter" />
-        <Spinner
-            android:id="@+id/spinner_filter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/spinner"
-            />
-        <Spinner
-            android:id="@+id/spinner_pogledaj_prema"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/spinner"
-            android:layout_marginTop="10dp"
-            />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_procitane"
             android:layout_width="match_parent"
