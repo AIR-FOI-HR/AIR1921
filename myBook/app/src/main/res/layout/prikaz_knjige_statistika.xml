@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="5dp"
+    android:foreground="?android:selectableItemBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/naslov_knjige"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/naslov_knjige"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/colorDark"
+            android:textIsSelectable="false"
+
+            />
+
+        <TextView
+            android:id="@+id/autor_knjige"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/naslov_knjige"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="3dp"
+            android:text="@string/autor_knjige"
+            android:textAppearance="@style/TextAppearance.Compat.Notification"
+            android:textColor="@color/colorDark"
+            android:textIsSelectable="false" />
+        <TextView
+            android:id="@+id/pocetakcitanja"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/autor_knjige"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="3dp"
+            android:text="@string/pocetak_citanja"
+            android:textAppearance="@style/TextAppearance.Compat.Notification"
+            android:textColor="@color/colorDarkGray"
+            android:textIsSelectable="false" />
+        <TextView
+            android:id="@+id/zavrsetakcitanja"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pocetakcitanja"
+            android:layout_marginStart="100dp"
+            android:text="@string/zavrsetak_citanja"
+            android:textAppearance="@style/TextAppearance.Compat.Notification"
+            android:textColor="@color/colorDarkGray"
+            android:textIsSelectable="false" />
+
+        <ImageView
+            android:id="@+id/slika_knjige"
+            android:layout_width="94dp"
+            android:layout_height="105dp"
+            android:contentDescription="@string/slika_knjige"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/ocjena_text"
+            android:textColor="@color/colorDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/ocjena_knjige" />
+
+        <RatingBar
+            android:id="@+id/rating_bar_ocjene"
+            style="@style/customRatingBar"
+            android:progressTint="@color/colorDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ocjena_text"
+            android:layout_marginStart="300dp"
+            android:numStars="5"
+            android:stepSize="0.1"
+
+            app:layout_constraintTop_toTopOf="@id/ocjena_text" />
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
