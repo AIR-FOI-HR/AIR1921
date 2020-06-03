@@ -9,9 +9,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import hr.foi.air.hr.database.entities.Citanje;
@@ -22,6 +26,11 @@ import hr.foi.air.mybook.adapters.ProcitaneKnjigeAdapter;
 
 public class StatistikaFragment extends Fragment {
 
+   private static final String TAG = "StatistikaFragment";
+
+   private String korisnickoIme;
+   private TextView brojProcitanihKnjiga;
+
    private DatabaseReference databaseReferenceKnjiga;
    private DatabaseReference databaseReferenceCitanje;
    private DatabaseReference databaseReferenceKorisnik;
@@ -31,6 +40,11 @@ public class StatistikaFragment extends Fragment {
 
    private ArrayList<ProcitanaKnjigaObject> korisnikKnjige = new ArrayList<>();
    private ArrayList<Korisnik> korisnici = new ArrayList<>();
+
+   public StatistikaFragment() {
+      // Required empty public constructor
+   }
+
 
    @Nullable
    @Override
@@ -48,4 +62,5 @@ public class StatistikaFragment extends Fragment {
       adapter = new ProcitaneKnjigeAdapter(view.getContext(), korisnikKnjige);
       recyclerView.setAdapter(adapter);
 
+      brojProcitanihKnjiga = view.findViewById(R.id.txt_broj_procitanih);
 }
