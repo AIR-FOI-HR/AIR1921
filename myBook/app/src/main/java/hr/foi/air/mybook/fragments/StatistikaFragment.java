@@ -28,6 +28,7 @@ import hr.foi.air.hr.database.entities.Knjiga;
 import hr.foi.air.hr.database.entities.Korisnik;
 import hr.foi.air.mybook.R;
 import hr.foi.air.mybook.adapters.ProcitaneKnjigeAdapter;
+import hr.foi.air.mybook.objects.ProcitanaKnjigaObject;
 
 public class StatistikaFragment extends Fragment {
 
@@ -99,6 +100,8 @@ public class StatistikaFragment extends Fragment {
                    Log.i(TAG, "Korisnik: "+korisnickoIme);
                }
             }
+             Log.i(TAG, "Dohvacanje procitanih knjiga");
+            dohvatiProcitaneKnjige(korisnickoIme);
          }
          @Override
          public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -107,4 +110,70 @@ public class StatistikaFragment extends Fragment {
       });
    }
 
+   private void dohvatiProcitaneKnjige(final String korisnickoIme){
+
+      final ArrayList<Citanje> citanjeKnjige = new ArrayList<>();
+      final ArrayList<Citanje> procitaneKnjige = new ArrayList<>();
+
+        databaseReferenceCitanje.orderByChild("korisnikKorime").equalTo(korisnickoIme).addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+              korisnikKnjige.clear();
+              citanjeKnjige.clear();
+              for (DataSnapshot item : dataSnapshot.getChildren()) {
+                 Citanje citanje = item.getValue(Citanje.class);
+                  Log.i(TAG, citanje.toString());
+                 citanjeKnjige.add(citanje);
+              }
+              databaseReferenceKnjiga.addValueEventListener(new ValueEventListener() {
+                 @Override
+                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot data: dataSnapshot.getChildren()) {
+                       final Knjiga book = data.getValue(Knjiga.class);
+                       for (Citanje citanjeKnjige:citanjeKnjige){
+                          if(citanjeKnjige.getKnjigaIdKnjiga().equals(book.getIdKnjiga())){
+                              Log.i(TAG, citanjeKnjige.toString());
+                             ProcitanaKnjigaObject procitanaKnjigaObject = new ProcitanaKnjigaObject();
+
+                             procitanaKnjigaObject.setIdKnjiga(book.getIdKnjiga());
+                             procitanaKnjigaObject.setAutor(book.getAutor());
+                             procitanaKnjigaObject.setNaziv(book.getNaziv());
+                             procitanaKnjigaObject.setDatumPocetka("Početak čitanja: " +citanjeKnjige.getDatumPocetka());
+                             procitanaKnjigaObject.setDatumKraja("Završetak čitanja: " +citanjeKnjige.getDatumKraja());
+                             procitanaKnjigaObject.setUrlSlike(book.getUrlSlike());
+
+                             korisnikKnjige.add(procitanaKnjigaObject);
+
+                             if (!"".equals(citanjeKnjige.getDatumKraja())) {
+                                procitaneKnjige.add(citanjeKnjige);
+                             }
+                          }
+                          prikaziKnjige(korisnikKnjige);
+                          izracunajBrojProcitanihKnjiga(procitaneKnjige,brojProcitanihKnjiga);
+                       }
+                    }
+                 }
+
+                 @Override
+                 public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                 }
+              });
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError databaseError) {
+
+           }
+        });
+}
+
+   private void prikaziKnjige(ArrayList<ProcitanaKnjigaObject> knjige) {
+      adapter = new ProcitaneKnjigeAdapter(getContext(), knjige);
+      recyclerView.setAdapter(adapter);
+   }
+
+   private void izracunajBrojProcitanihKnjiga(ArrayList<Citanje> procitane, TextView brojKnjiga){
+      brojKnjiga.setText(String.valueOf(procitane.size()));
+   }
 }
