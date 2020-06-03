@@ -24,7 +24,7 @@
             android:layout_marginStart="100dp"
             android:layout_marginTop="8dp"
             android:text="@string/naslov_knjige"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="18sp"
             android:textColor="@color/colorDark"
             android:textIsSelectable="false"
 
@@ -48,8 +48,7 @@
             android:layout_below="@+id/autor_knjige_statistika"
             android:layout_marginStart="100dp"
             android:layout_marginTop="3dp"
-            android:text="@string/pocetak_citanja"
-            android:textAppearance="@style/TextAppearance.Compat.Notification"
+
             android:textColor="@color/colorDarkGray"
             android:textIsSelectable="false" />
         <TextView
@@ -58,8 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/pocetakcitanja_statistika"
             android:layout_marginStart="100dp"
-            android:text="@string/zavrsetak_citanja"
-            android:textAppearance="@style/TextAppearance.Compat.Notification"
+
             android:textColor="@color/colorDarkGray"
             android:textIsSelectable="false" />
 
@@ -69,29 +67,6 @@
             android:layout_height="105dp"
             android:contentDescription="@string/slika_knjige"
             android:src="@mipmap/ic_launcher" />
-
-        <TextView
-            android:id="@+id/ocjena_text"
-            android:textColor="@color/colorDark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/ocjena_knjige" />
-
-        <RatingBar
-            android:id="@+id/rating_bar_ocjene_statistika"
-            style="@style/customRatingBar"
-            android:progressTint="@color/colorDark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ocjena_text"
-            android:layout_marginStart="300dp"
-            android:numStars="5"
-            android:stepSize="0.1"
-
-            app:layout_constraintTop_toTopOf="@id/ocjena_text" />
-
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
