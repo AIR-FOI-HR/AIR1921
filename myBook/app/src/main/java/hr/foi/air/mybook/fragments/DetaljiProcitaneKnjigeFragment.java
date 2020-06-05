@@ -1,11 +1,15 @@
 package hr.foi.air.mybook.fragments;
 
+import android.app.DatePickerDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +21,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import java.util.Calendar;
+
 import hr.foi.air.mybook.R;
 
 public class DetaljiProcitaneKnjigeFragment extends Fragment {
@@ -32,6 +38,10 @@ public class DetaljiProcitaneKnjigeFragment extends Fragment {
     private TextView datumZavrsetka;
     private EditText komentar;
     private RatingBar ocjenaKnjige;
+
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
+
+    private DatabaseReference databaseReferenceCitanje;
 
     @Nullable
     @Override
@@ -54,6 +64,36 @@ public class DetaljiProcitaneKnjigeFragment extends Fragment {
         datumZavrsetka.setInputType(InputType.TYPE_NULL);
 
         prikaziDetaljeProcitaneKnjige();
+
+        ImageView ikonaDatum=view.findViewById(R.id.zavrsetak_procitana);
+        ikonaDatum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+                int month = cal.get(Calendar.MONTH);
+                int year = cal.get(Calendar.YEAR);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        getActivity(),
+                        android.R.style.Theme_DeviceDefault_Light_Panel,
+                        mDateSetListener,
+                        year, month, day);
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FDF7F9")));
+                datePickerDialog.show();
+            }
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month +1;
+                Log.d(TAG, "onDateSet: date dd/mm/yyyy: " + dayOfMonth + "/" + month + "/" + year);
+
+                String date = dayOfMonth + "/" + month + "/" + year;
+                datumZavrsetka.setText(date);
+            }
+        };
 
     }
 
