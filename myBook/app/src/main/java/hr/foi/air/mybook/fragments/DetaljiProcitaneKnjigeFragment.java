@@ -140,6 +140,8 @@ public class DetaljiProcitaneKnjigeFragment extends Fragment {
 private void spremiPromjene(){
 
     final String kraj=this.datumZavrsetka.getText().toString().trim();
+    final String komentar=this.komentar.getText().toString().trim();
+    final float ocjenaKorisnika=this.ocjenaKnjige.getRating();
 
     databaseReferenceCitanje.orderByChild("korisnikKorime").equalTo(korisnik).addValueEventListener(new ValueEventListener() {
         @Override
@@ -152,6 +154,8 @@ private void spremiPromjene(){
                     Log.i(TAG, "CITANJE: "+citanje.toString());
                     String citanjeKey=item.getKey();
 
+                    databaseReferenceCitanje.child(citanjeKey).child("komentar").setValue(komentar);
+                    databaseReferenceCitanje.child(citanjeKey).child("ocjena").setValue(ocjenaKorisnika);
                     databaseReferenceCitanje.child(citanjeKey).child("datumKraja").setValue(kraj);
 
                 }
