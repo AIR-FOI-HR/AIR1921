@@ -42,8 +42,8 @@
     <string name="zanr">Žanr</string>
     <string name="pocni_citati">Počni čitati</string>
     <string name="komentari">Komentari</string>
-    <string name="pocetak_citanja">Početak čitanja</string>
-    <string name="zavrsetak_citanja">Završetak čitanja</string>
+    <string name="pocetak_citanja">Početak čitanja: \u0020</string>
+    <string name="zavrsetak_citanja">Završetak čitanja: \u0020</string>
     <string name="komentar">Komentar</string>
     <string name="dodaj_komentar">Ovdje dodajte svoj komentar na pročitanu knjigu.</string>
 
