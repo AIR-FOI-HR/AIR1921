@@ -146,10 +146,11 @@
                 android:layout_below="@id/txt_ocjena"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rating_bar_detalji_knjige"
+                android:id="@+id/rating_bar_detalji_procitane"
                 app:layout_constraintTop_toTopOf="@id/txt_ocjena"
                 android:layout_gravity="start"
                 android:layout_marginStart="20dp"
+                android:progressTint="@color/colorDark"
                 android:numStars="5"
                 android:scaleX="0.7"
                 android:scaleY="0.7"
@@ -157,7 +158,7 @@
                 android:transformPivotY="0dp"/>
 
             <TextView
-                android:layout_below="@id/rating_bar_detalji_knjige"
+                android:layout_below="@id/rating_bar_detalji_procitane"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorDark"
