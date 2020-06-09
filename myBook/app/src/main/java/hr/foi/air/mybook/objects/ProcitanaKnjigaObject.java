@@ -1,13 +1,24 @@
 package hr.foi.air.mybook.objects;
 
 public class ProcitanaKnjigaObject {
+    private String korisnikKorime;
     private String idKnjiga;
     private String naziv;
     private String autor;
     private String urlSlike;
     private String datumPocetka;
     private String datumKraja;
+    private String komentar;
     private float ocjena;
+
+    public String getKorisnikKorime() {
+        return korisnikKorime;
+    }
+
+    public void setKorisnikKorime(String korisnikKorime) {
+        this.korisnikKorime = korisnikKorime;
+    }
+
 
     public String getIdKnjiga() {
         return idKnjiga;
@@ -56,6 +67,10 @@ public class ProcitanaKnjigaObject {
     public void setDatumKraja(String datumKraja) {
         this.datumKraja = datumKraja;
     }
+
+    public String getKomentar() { return komentar; }
+
+    public void setKomentar(String komentar) { this.komentar = komentar; }
 
     public float getOcjena() { return ocjena; }
 

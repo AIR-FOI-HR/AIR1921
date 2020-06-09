@@ -17,6 +17,13 @@
         android:layout_margin="5dp"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/slika_knjige_statistika"
+            android:layout_width="94dp"
+            android:layout_height="105dp"
+            android:contentDescription="@string/slika_knjige"
+            android:src="@mipmap/ic_launcher" />
+
         <TextView
             android:id="@+id/naslov_knjige_statistika"
             android:layout_width="wrap_content"
@@ -41,32 +48,49 @@
             android:textAppearance="@style/TextAppearance.Compat.Notification"
             android:textColor="@color/colorDark"
             android:textIsSelectable="false" />
-        <TextView
-            android:id="@+id/pocetakcitanja_statistika"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_pocetakstat"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/autor_knjige_statistika"
+            android:orientation="horizontal"
             android:layout_marginStart="100dp"
-            android:layout_marginTop="3dp"
+            android:layout_below="@id/autor_knjige_statistika">
+            <TextView
+                android:id="@+id/pocetak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pocetak_citanja"
+                android:textColor="@color/colorDark" />
 
-            android:textColor="@color/colorDarkGray"
-            android:textIsSelectable="false" />
-        <TextView
-            android:id="@+id/zavrsetakcitanja_statistika"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/pocetakcitanja_statistika"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginStart="10dp"
+                android:textColor="@color/colorDark" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_zavrsetakstat"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/pocetakcitanja_statistika"
             android:layout_marginStart="100dp"
-
-            android:textColor="@color/colorDarkGray"
-            android:textIsSelectable="false" />
-
-        <ImageView
-            android:id="@+id/slika_knjige_statistika"
-            android:layout_width="94dp"
-            android:layout_height="105dp"
-            android:contentDescription="@string/slika_knjige"
-            android:src="@mipmap/ic_launcher" />
+            android:orientation="horizontal"
+            android:layout_below="@id/ll_pocetakstat">
+            <TextView
+                android:id="@+id/kraj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zavrsetak_citanja"
+                android:textColor="@color/colorDark" />
+            <TextView
+                android:id="@+id/zavrsetakcitanja_statistika"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0202"
+                android:textColor="@color/colorDark"
+/>
+        </LinearLayout>
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

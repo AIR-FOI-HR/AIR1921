@@ -138,9 +138,12 @@ public class StatistikaFragment extends Fragment {
                              procitanaKnjigaObject.setIdKnjiga(book.getIdKnjiga());
                              procitanaKnjigaObject.setAutor(book.getAutor());
                              procitanaKnjigaObject.setNaziv(book.getNaziv());
-                             procitanaKnjigaObject.setDatumPocetka("Početak čitanja: " +citanjeKnjige.getDatumPocetka());
-                             procitanaKnjigaObject.setDatumKraja("Završetak čitanja: " +citanjeKnjige.getDatumKraja());
+                             procitanaKnjigaObject.setDatumPocetka(citanjeKnjige.getDatumPocetka());
+                             procitanaKnjigaObject.setDatumKraja(citanjeKnjige.getDatumKraja());
                              procitanaKnjigaObject.setUrlSlike(book.getUrlSlike());
+                             procitanaKnjigaObject.setKomentar(citanjeKnjige.getKomentar());
+                             procitanaKnjigaObject.setOcjena(citanjeKnjige.getOcjena());
+                             procitanaKnjigaObject.setKorisnikKorime(citanjeKnjige.getKorisnikKorime());
 
                              korisnikKnjige.add(procitanaKnjigaObject);
 
