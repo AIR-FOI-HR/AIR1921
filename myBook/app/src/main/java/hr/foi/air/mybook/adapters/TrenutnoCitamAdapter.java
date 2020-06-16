@@ -1,6 +1,7 @@
 package hr.foi.air.mybook.adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -33,11 +34,17 @@ public class TrenutnoCitamAdapter extends RecyclerView.Adapter<TrenutnoCitamAdap
 
         }
     }
+    public TrenutnoCitamAdapter(Context context, ArrayList<ProcitanaKnjigaObject> trenutnoCitam) {
+        this.trenutnoCitam=trenutnoCitam;
+        this.context = context;
+    }
+
 
     @NonNull
     @Override
-    public TrenutnoCitamAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.prikaz_trenutno_citam, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
