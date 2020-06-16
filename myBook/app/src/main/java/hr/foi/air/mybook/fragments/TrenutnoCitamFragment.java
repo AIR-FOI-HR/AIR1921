@@ -1,13 +1,17 @@
 package hr.foi.air.mybook.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -25,6 +29,8 @@ import hr.foi.air.mybook.objects.ProcitanaKnjigaObject;
 public class TrenutnoCitamFragment extends Fragment {
 
     private static final String TAG = "TrenutnoCitamFragment";
+
+    private String korisnickoIme;
 
     private DatabaseReference databaseReferenceKnjiga;
     private DatabaseReference databaseReferenceCitanje;
@@ -60,6 +66,8 @@ public class TrenutnoCitamFragment extends Fragment {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseKorisnik = firebaseAuth.getCurrentUser().getEmail();
 
+        dohvatiKorisnickoIme(firebaseKorisnik);
+
         recyclerView = view.findViewById(R.id.recycler_trenutno_citam);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -67,5 +75,29 @@ public class TrenutnoCitamFragment extends Fragment {
         adapter = new TrenutnoCitamAdapter(getContext(),korisnikCita);
         recyclerView.setAdapter(adapter);
 
+    }
+
+    private void dohvatiKorisnickoIme(final String firebaseKorisnik) {
+        databaseReferenceKorisnik.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                korisnici.clear();
+                for (DataSnapshot item : dataSnapshot.getChildren()) {
+                    Korisnik korisnik = item.getValue(Korisnik.class);
+                    korisnici.add(korisnik);
+                }
+                for (Korisnik korisnik : korisnici) {
+                    Log.e(TAG, "pronađiKorisnickoIme: " + korisnik);
+                    if (korisnik.getMail().equals(firebaseKorisnik)) {
+                        korisnickoIme = korisnik.getKorime();
+                        Log.i(TAG, "Korisnik: "+korisnickoIme);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }
