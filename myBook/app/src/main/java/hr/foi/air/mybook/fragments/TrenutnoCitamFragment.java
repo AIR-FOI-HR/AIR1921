@@ -21,6 +21,8 @@ import androidx.fragment.app.Fragment;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import hr.foi.air.hr.database.entities.Citanje;
+import hr.foi.air.hr.database.entities.Knjiga;
 import hr.foi.air.hr.database.entities.Korisnik;
 import hr.foi.air.mybook.R;
 import hr.foi.air.mybook.adapters.TrenutnoCitamAdapter;
@@ -93,6 +95,8 @@ public class TrenutnoCitamFragment extends Fragment {
                         Log.i(TAG, "Korisnik: "+korisnickoIme);
                     }
                 }
+                Log.i(TAG, "Dohvacanje knjiga koje se čitaju");
+                dohvatiKnjige(korisnickoIme);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -100,4 +104,67 @@ public class TrenutnoCitamFragment extends Fragment {
             }
         });
     }
+    
+    private void dohvatiKnjige(String korisnickoIme) {
+
+        final ArrayList<Citanje> citanjeKnjige = new ArrayList<>();
+
+        databaseReferenceCitanje.orderByChild("korisnikKorime").equalTo(korisnickoIme).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                korisnikCita.clear();
+                citanjeKnjige.clear();
+                for (DataSnapshot item : dataSnapshot.getChildren()) {
+                    Citanje citanje = item.getValue(Citanje.class);
+                    Log.i(TAG, citanje.toString());
+                    citanjeKnjige.add(citanje);
+                }
+                databaseReferenceKnjiga.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot data: dataSnapshot.getChildren()) {
+                            final Knjiga book = data.getValue(Knjiga.class);
+                            for (Citanje citanjeKnjige:citanjeKnjige){
+                                if(citanjeKnjige.getKnjigaIdKnjiga().equals(book.getIdKnjiga())){
+                                    if(citanjeKnjige.getDatumKraja().equals("")) {
+                                        Log.i(TAG, citanjeKnjige.toString());
+                                        ProcitanaKnjigaObject procitanaKnjigaObject = new ProcitanaKnjigaObject();
+
+                                        procitanaKnjigaObject.setIdKnjiga(book.getIdKnjiga());
+                                        procitanaKnjigaObject.setAutor(book.getAutor());
+                                        procitanaKnjigaObject.setNaziv(book.getNaziv());
+                                        procitanaKnjigaObject.setDatumPocetka(citanjeKnjige.getDatumPocetka());
+                                        procitanaKnjigaObject.setDatumKraja(citanjeKnjige.getDatumKraja());
+                                        procitanaKnjigaObject.setUrlSlike(book.getUrlSlike());
+                                        procitanaKnjigaObject.setKomentar(citanjeKnjige.getKomentar());
+                                        procitanaKnjigaObject.setOcjena(citanjeKnjige.getOcjena());
+                                        procitanaKnjigaObject.setKorisnikKorime(citanjeKnjige.getKorisnikKorime());
+
+                                        korisnikCita.add(procitanaKnjigaObject);
+                                    }
+                                }
+                                prikaziKnjige(korisnikCita);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void prikaziKnjige(ArrayList<ProcitanaKnjigaObject> knjige) {
+        adapter = new TrenutnoCitamAdapter(getContext(), knjige);
+        recyclerView.setAdapter(adapter);
+    }
 }
+
