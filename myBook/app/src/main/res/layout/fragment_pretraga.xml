@@ -29,6 +29,7 @@
                 android:id="@+id/toolbar_title_pretraga" />
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/search"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 />
