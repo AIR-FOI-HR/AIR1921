@@ -55,5 +55,6 @@
     <string name="promjenite_lozinku">Promjenite lozinku</string>
     <string name="ime_i_prezime">Ime i prezime</string>
     <string name="mail_adresa">e-mail adresa</string>
+    <string name="odjava">Odjava</string>
 
 </resources>
