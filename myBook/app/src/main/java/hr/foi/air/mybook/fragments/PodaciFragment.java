@@ -25,7 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import hr.foi.air.hr.database.entities.Korisnik;
-import hr.foi.air.mybook.GlavniIzbornikActivity;
 import hr.foi.air.mybook.MainActivity;
 import hr.foi.air.mybook.R;
 
@@ -45,12 +44,12 @@ public class PodaciFragment extends Fragment {
     private ArrayList<Korisnik> korisnici = new ArrayList<>();
 
     private DatabaseReference databaseReferenceKorisnik;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_podaci,container,false);
+        return inflater.inflate(R.layout.fragment_podaci, container, false);
     }
-
 
 
     @Override
@@ -102,12 +101,13 @@ public class PodaciFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 korisnici.clear();
-                for (DataSnapshot item: dataSnapshot.getChildren()){
+                for (DataSnapshot item : dataSnapshot.getChildren()) {
                     Korisnik korisnik = item.getValue(Korisnik.class);
                     korisnici.add(korisnik);
                 }
                 pronađiKorisnika(korisnikMail);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -118,9 +118,9 @@ public class PodaciFragment extends Fragment {
     private void pronađiKorisnika(String korisnikMail) {
 
 
-        for (Korisnik korisnik: korisnici) {
-            Log.e(TAG, "pronađiKorisnika: "+ korisnik);
-            if (korisnik.getMail().equals(korisnikMail)){
+        for (Korisnik korisnik : korisnici) {
+            Log.e(TAG, "pronađiKorisnika: " + korisnik);
+            if (korisnik.getMail().equals(korisnikMail)) {
                 podaciIme.setText(korisnik.getIme());
                 podaciPrezime.setText(korisnik.getPrezime());
                 podaciKorIme.setText(korisnik.getKorime());
