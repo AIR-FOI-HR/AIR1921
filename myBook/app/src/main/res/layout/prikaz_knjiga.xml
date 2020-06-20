@@ -55,7 +55,9 @@
             android:textColor="@color/colorDark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="300dp"
+            android:layout_below="@id/opis_knjige"
+            android:layout_alignLeft="@id/rating_bar_ocjene"
+            android:layout_marginEnd="10dp"
             android:layout_marginTop="8dp"
             android:text="@string/ocjena_knjige" />
 
@@ -66,7 +68,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ocjena_text"
-            android:layout_marginStart="300dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
             android:numStars="5"
             android:stepSize="0.1"
 
