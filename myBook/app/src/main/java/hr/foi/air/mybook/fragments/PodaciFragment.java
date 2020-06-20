@@ -1,11 +1,13 @@
 package hr.foi.air.mybook.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import hr.foi.air.hr.database.entities.Korisnik;
+import hr.foi.air.mybook.GlavniIzbornikActivity;
+import hr.foi.air.mybook.MainActivity;
 import hr.foi.air.mybook.R;
 
 
@@ -60,7 +64,7 @@ public class PodaciFragment extends Fragment {
         podaciMail = view.findViewById(R.id.txt_podaci_email);
 
         databaseReferenceKorisnik = FirebaseDatabase.getInstance().getReference("korisnik");
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         String firebaseUser = firebaseAuth.getCurrentUser().getEmail();
 
         dohvatiPodatke(firebaseUser);
@@ -76,6 +80,19 @@ public class PodaciFragment extends Fragment {
                 fragmentTransaction.hide(PodaciFragment.this);
                 fragmentTransaction.replace(R.id.frame_profil, zaboravljenaLozinkaFragment);
                 fragmentTransaction.commit();
+            }
+        });
+
+        TextView logout = view.findViewById(R.id.txt_odjava);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e(TAG, "Logout!");
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(getActivity(), "Uspješna odjava!", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
     }
