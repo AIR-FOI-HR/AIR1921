@@ -43,7 +43,7 @@ public class BookRecyclerAdapter extends RecyclerView.Adapter<BookRecyclerAdapte
     }
 
     public BookRecyclerAdapter(Context context, ArrayList<BookListObject> books) {
-        allBooks = books;
+        this.allBooks = books;
         this.context = context;
     }
 
