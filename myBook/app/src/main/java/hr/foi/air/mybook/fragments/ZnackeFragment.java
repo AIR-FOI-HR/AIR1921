@@ -30,6 +30,7 @@ import hr.foi.air.hr.database.entities.Knjiga;
 import hr.foi.air.hr.database.entities.Korisnik;
 import hr.foi.air.mybook.R;
 import hr.foi.air.mybook.adapters.ZnackeAdapter;
+import hr.foi.air.read10books.ReadTenBooksModule;
 import hr.foi.air.readingaward.FirstBookModule;
 
 public class ZnackeFragment extends Fragment {
@@ -48,12 +49,8 @@ public class ZnackeFragment extends Fragment {
     private RecyclerView.Adapter adapter;
 
 
-
-
     private ArrayList<ModulDataObject> modulDataObjects = new ArrayList<>();
     private ArrayList<Korisnik> korisnici = new ArrayList<>();
-
-
 
 
     private List<DataPresenter> modules;
@@ -82,10 +79,9 @@ public class ZnackeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
 
-
-
         modules = new ArrayList<>();
         modules.add(new FirstBookModule());
+        modules.add(new ReadTenBooksModule());
 
         if (modules != null && modules.size() > 0) {
             for (DataPresenter module : modules) {
@@ -109,12 +105,13 @@ public class ZnackeFragment extends Fragment {
                     Log.e(TAG, "pronađiKorisnickoIme: " + korisnik);
                     if (korisnik.getMail().equals(korisnikMail)) {
                         korisnickoIme = korisnik.getKorime();
-                        Log.i(TAG, "Korisnik: "+korisnickoIme);
+                        Log.i(TAG, "Korisnik: " + korisnickoIme);
                     }
                 }
                 Log.i(TAG, "Dohvacanje procitanih knjiga");
                 dohvatiProcitaneKnjige(korisnickoIme, modul);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -122,14 +119,13 @@ public class ZnackeFragment extends Fragment {
         });
     }
 
-    private void dohvatiProcitaneKnjige(final String korisnickoIme, final DataPresenter modul){
+    private void dohvatiProcitaneKnjige(final String korisnickoIme, final DataPresenter modul) {
 
         final ArrayList<Citanje> citanjeKnjige = new ArrayList<>();
 
         databaseReferenceCitanje.orderByChild("korisnikKorime").equalTo(korisnickoIme).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                modulDataObjects.clear();
                 citanjeKnjige.clear();
                 for (DataSnapshot item : dataSnapshot.getChildren()) {
                     Citanje citanje = item.getValue(Citanje.class);
@@ -138,10 +134,11 @@ public class ZnackeFragment extends Fragment {
                 databaseReferenceKnjiga.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot data: dataSnapshot.getChildren()) {
+                        modulDataObjects.clear();
+                        for (DataSnapshot data : dataSnapshot.getChildren()) {
                             final Knjiga book = data.getValue(Knjiga.class);
-                            for (Citanje citanjeKnjige:citanjeKnjige){
-                                if(citanjeKnjige.getKnjigaIdKnjiga().equals(book.getIdKnjiga())){
+                            for (Citanje citanjeKnjige : citanjeKnjige) {
+                                if (citanjeKnjige.getKnjigaIdKnjiga().equals(book.getIdKnjiga())) {
                                     Log.i(TAG, citanjeKnjige.toString());
                                     ModulDataObject modulDataObject = new ModulDataObject();
 
