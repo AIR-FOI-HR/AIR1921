@@ -56,5 +56,8 @@
     <string name="ime_i_prezime">Ime i prezime</string>
     <string name="mail_adresa">e-mail adresa</string>
     <string name="odjava">Odjava</string>
+    <string name="naziv_znacke">Naziv značke</string>
+    <string name="opis_znacke">Opis značke</string>
+    <string name="slika_znacke">Slika značke</string>
 
 </resources>
