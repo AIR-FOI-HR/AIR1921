@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="100dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="15dp"
             android:text="@string/naziv_znacke"
             android:textSize="22sp"
             android:textStyle="bold"
