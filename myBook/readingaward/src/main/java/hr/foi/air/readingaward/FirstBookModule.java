@@ -28,7 +28,7 @@ public class FirstBookModule implements DataPresenter {
         } else {
             int brProcitanih = 0;
             for (ModulDataObject data : modulData) {
-                if (!"".equals(data.getDatumKrajaCitanja())) {
+                if (!data.getDatumKrajaCitanja().isEmpty()) {
                     brProcitanih += 1;
                 }
             }
