@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">read10books</string>
+    <string name="ten_books">Pročitanih 10 knjiga</string>
+    <string name="ten_books_description">Značka je ostvarena nakon što pročitate 1o knjiga.</string>
 </resources>
