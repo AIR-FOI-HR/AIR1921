@@ -25,6 +25,7 @@ import com.tbp.foi.hr.core.objects.ModulDataObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import hr.foi.air.commentaward.CommentModule;
 import hr.foi.air.hr.database.entities.Citanje;
 import hr.foi.air.hr.database.entities.Knjiga;
 import hr.foi.air.hr.database.entities.Korisnik;
@@ -82,6 +83,7 @@ public class ZnackeFragment extends Fragment {
         modules = new ArrayList<>();
         modules.add(new FirstBookModule());
         modules.add(new ReadTenBooksModule());
+        modules.add(new CommentModule());
 
         if (modules != null && modules.size() > 0) {
             for (DataPresenter module : modules) {

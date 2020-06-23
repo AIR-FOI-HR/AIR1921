@@ -41,4 +41,5 @@ dependencies {
     implementation project(path: ':core')
     implementation project(path: ':readingaward')
     implementation project(path: ':read10books')
+    implementation project(path: ':commentaward')
 }
