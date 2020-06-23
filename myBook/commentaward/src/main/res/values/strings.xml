@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">commentAward</string>
+    <string name="naziv_znacke">Naziv značke</string>
+    <string name="opis_znacke">Opis značke</string>
+    <string name="slika_znacke">Slika značke</string>
+    <string name="cestitka_znacke">Čestitka </string>
 </resources>
