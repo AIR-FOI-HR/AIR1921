@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">read10books</string>
     <string name="ten_books">Pročitanih 10 knjiga</string>
-    <string name="ten_books_description">Značka je ostvarena nakon što pročitate 1o knjiga.</string>
+    <string name="ten_books_description">Značka je ostvarena nakon što pročitate 10 knjiga.</string>
     <string name="naziv_znacke">Naziv značke</string>
     <string name="opis_znacke">Opis značke</string>
     <string name="slika_znacke">Slika značke</string>
     <string name="cestitka_znacke">Čestitka </string>
     <string name="ten_books_awarded">Čestitamo osvojili ste značku!</string>
-    <string name="ten_books_info">Pročitajte još: </string>
+    <string name="ten_books_info">Pročitajte još: \u0020</string>
 </resources>

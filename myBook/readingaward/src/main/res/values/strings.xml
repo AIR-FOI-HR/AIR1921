@@ -7,5 +7,5 @@
     <string name="slika_znacke">Slika značke</string>
     <string name="cestitka_znacke">Čestitka </string>
     <string name="first_book_awarded">Čestitamo osvojili ste značku!</string>
-    <string name="first_book_info">Pročitajte još: </string>
+    <string name="first_book_info">Pročitajte još: \u0020</string>
 </resources>
