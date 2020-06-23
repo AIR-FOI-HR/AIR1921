@@ -30,13 +30,15 @@
         android:text="@string/opis_znacke"
         android:layout_marginTop="10dp"
         android:textSize="20sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:id="@+id/txt_detaljiznacke_opis" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorDarkGray"
+        android:textColor="@color/colorDark"
         android:text="@string/cestitka_znacke"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="40dp"
         android:textSize="20sp"
         android:id="@+id/txt_detaljiznacke_cestitka" />
 </LinearLayout>
