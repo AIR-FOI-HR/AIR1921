@@ -2,4 +2,10 @@
     <string name="app_name">readingAward</string>
     <string name="first_book">Pročitana prva knjiga</string>
     <string name="first_book_description">Značka je ostvarena nakon što pročitate prvu knjigu.</string>
+    <string name="naziv_znacke">Naziv značke</string>
+    <string name="opis_znacke">Opis značke</string>
+    <string name="slika_znacke">Slika značke</string>
+    <string name="cestitka_znacke">Čestitka </string>
+    <string name="first_book_awarded">Čestitamo osvojili ste značku!</string>
+    <string name="first_book_info">Pročitajte još: </string>
 </resources>
