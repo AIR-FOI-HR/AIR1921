@@ -4,4 +4,6 @@
     <string name="opis_znacke">Opis značke</string>
     <string name="slika_znacke">Slika značke</string>
     <string name="cestitka_znacke">Čestitka </string>
+    <string name="comment_books">Ostavljenih 5 komentara</string>
+    <string name="comment_description">Značka je ostvarena nakon što ostavite 5 komentara.</string>
 </resources>
