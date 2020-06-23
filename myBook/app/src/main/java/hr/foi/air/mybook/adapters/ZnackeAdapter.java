@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tbp.foi.hr.core.DataPresenter;
@@ -40,6 +41,18 @@ public class ZnackeAdapter extends RecyclerView.Adapter<ZnackeAdapter.ViewHolder
         holder.nazivZnacke.setText(modul.getName(context));
         holder.opisZnacke.setText(modul.getDescription(context));
         holder.slikaZnacke.setImageDrawable(modul.getImage(context));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatActivity activity=(AppCompatActivity)v.getContext();
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frame_izbornik, modul.getFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
 
     @Override

@@ -6,4 +6,6 @@
     <string name="cestitka_znacke">Čestitka </string>
     <string name="comment_books">Ostavljenih 5 komentara</string>
     <string name="comment_description">Značka je ostvarena nakon što ostavite 5 komentara.</string>
+    <string name="comment_awarded">Čestitamo osvojili ste značku!</string>
+    <string name="comment_info">Komentirajte još: </string>
 </resources>
