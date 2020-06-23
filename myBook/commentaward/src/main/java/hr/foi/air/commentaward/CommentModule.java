@@ -28,6 +28,8 @@ public class CommentModule extends Fragment implements DataPresenter {
 
     private List<ModulDataObject> modulData;
 
+    private static final int constraint = 5;
+
     private ImageView image;
     private TextView name;
     private TextView details;
@@ -69,7 +71,7 @@ public class CommentModule extends Fragment implements DataPresenter {
             information.setText(getContext().getString(R.string.comment_awarded));
         } else {
             image.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.comment_bw, null));
-            int number = 5 - numberOfCommentedBooks();
+            int number = constraint - numberOfCommentedBooks();
             information.setText(String.format("%s%d", getContext().getString(R.string.comment_info), number));
         }
     }
@@ -107,7 +109,7 @@ public class CommentModule extends Fragment implements DataPresenter {
 
     private boolean hasPrize() {
         int numberOfComments = numberOfCommentedBooks();
-        if (numberOfComments >= 5) {
+        if (numberOfComments >= constraint) {
             Log.i(TAG, "Korisnik ima značku!");
             return true;
         } else {

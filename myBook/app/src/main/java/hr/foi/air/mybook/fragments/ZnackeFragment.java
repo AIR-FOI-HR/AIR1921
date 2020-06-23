@@ -86,12 +86,12 @@ public class ZnackeFragment extends Fragment {
         modules.add(new CommentModule());
 
         if (modules != null && modules.size() > 0) {
-            dohvatiKorisnickoIme(firebaseKorisnik, modules);
+            fetchDataForUser(firebaseKorisnik, modules);
         }
     }
 
 
-    private void dohvatiKorisnickoIme(final String korisnikMail, final List<DataPresenter> modul) {
+    private void fetchDataForUser(final String korisnikMail, final List<DataPresenter> modul) {
 
         databaseReferenceKorisnik.addValueEventListener(new ValueEventListener() {
             @Override
@@ -109,7 +109,7 @@ public class ZnackeFragment extends Fragment {
                     }
                 }
                 Log.i(TAG, "Dohvacanje procitanih knjiga");
-                dohvatiProcitaneKnjige(korisnickoIme, modul);
+                provideDataToModules(korisnickoIme, modul);
             }
 
             @Override
@@ -119,7 +119,7 @@ public class ZnackeFragment extends Fragment {
         });
     }
 
-    private void dohvatiProcitaneKnjige(final String korisnickoIme, final List<DataPresenter> modul) {
+    private void provideDataToModules(final String korisnickoIme, final List<DataPresenter> modul) {
 
         final ArrayList<Citanje> citanjeKnjige = new ArrayList<>();
 

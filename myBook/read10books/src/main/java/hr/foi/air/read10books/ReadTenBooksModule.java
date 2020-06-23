@@ -28,6 +28,8 @@ public class ReadTenBooksModule extends Fragment implements DataPresenter {
 
     private List<ModulDataObject> modulData;
 
+    private static final int constraint = 10;
+
     private ImageView image;
     private TextView name;
     private TextView details;
@@ -69,7 +71,7 @@ public class ReadTenBooksModule extends Fragment implements DataPresenter {
             information.setText(getContext().getString(R.string.ten_books_awarded));
         } else {
             image.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.reading10_bw, null));
-            int number = 10 - numberOfReadBooks();
+            int number = constraint - numberOfReadBooks();
             information.setText(String.format("%s%d", getContext().getString(R.string.ten_books_info), number));
         }
     }
@@ -108,7 +110,7 @@ public class ReadTenBooksModule extends Fragment implements DataPresenter {
 
     private boolean hasPrize() {
         int numberOfReadBooks = numberOfReadBooks();
-        if (numberOfReadBooks >= 10) {
+        if (numberOfReadBooks >= constraint) {
             Log.i(TAG, "Korisnik ima značku!");
             return true;
         } else {
