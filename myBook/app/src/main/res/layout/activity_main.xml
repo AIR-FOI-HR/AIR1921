@@ -9,9 +9,9 @@
     <ImageView
         android:contentDescription="@string/app_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="325dp"
         android:layout_marginTop="125dp"
-        android:src="@drawable/m3"/>
+        android:src="@drawable/logo"/>
 
     <Button
         android:contentDescription="@string/opis_prijave"

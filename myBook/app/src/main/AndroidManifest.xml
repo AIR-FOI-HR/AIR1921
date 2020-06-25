@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.air.foi.hr.mybook">
+    package="hr.foi.air.mybook">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name="hr.foi.air.mybook.Home"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/launch"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/prijava"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".RegisterActivity"
-            android:label="@string/registracija"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name="hr.foi.air.mybook.GlavniIzbornikActivity"></activity>
+        <activity android:name="hr.foi.air.mybook.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="hr.foi.air.mybook.GlavniIzbornikActivity">
+
+    <FrameLayout
+        android:id="@+id/frame_izbornik"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/nav_view_glavna"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view_glavna"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorLightPink"
+        app:menu="@menu/glavna_navigacija"
+        app:itemIconTint="@drawable/nav_colors"
+        app:itemTextColor="@drawable/nav_colors"
+        app:labelVisibilityMode="labeled"
+       />
+
+</RelativeLayout>

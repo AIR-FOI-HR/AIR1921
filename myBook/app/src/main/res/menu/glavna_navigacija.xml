@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_pocetna"
+        android:icon="@drawable/ic_pocetna"
+        android:title="@string/pocetna"/>
+
+    <item
+        android:id="@+id/nav_sveknjige"
+        android:icon="@drawable/ic_pregled_knjiga"
+        android:title="@string/sve_knjige"/>
+
+    <item
+        android:id="@+id/nav_pretrazi"
+        android:icon="@drawable/ic_pretraga"
+        android:title="@string/pretrazi"/>
+
+    <item
+        android:id="@+id/nav_novaknjiga"
+        android:icon="@drawable/ic_dodaj_knjigu"
+        android:title="@string/nova_knjiga"/>
+
+    <item
+        android:id="@+id/nav_profil"
+        android:icon="@drawable/ic_profil"
+        android:title="@string/profil"/>
+
+</menu>

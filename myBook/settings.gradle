@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':database', ':readingaward', ':core', ':read10books', ':commentaward'
 rootProject.name='MyBook'

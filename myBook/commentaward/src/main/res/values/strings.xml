@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">commentAward</string>
+    <string name="naziv_znacke">Naziv značke</string>
+    <string name="opis_znacke">Opis značke</string>
+    <string name="slika_znacke">Slika značke</string>
+    <string name="cestitka_znacke">Čestitka </string>
+    <string name="comment_books">Ostavljenih 5 komentara</string>
+    <string name="comment_description">Značka je ostvarena nakon što ostavite 5 komentara.</string>
+    <string name="comment_awarded">Čestitamo osvojili ste značku!</string>
+    <string name="comment_info">Komentirajte još: \u0020</string>
+</resources>

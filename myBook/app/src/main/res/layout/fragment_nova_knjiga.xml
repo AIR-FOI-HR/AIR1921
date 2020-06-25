@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nova_knjiga_fragment"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout_nova_knjiga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_nova_knjiga"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorLightPink"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDark"
+                android:text="@string/dodaj_novu"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:id="@+id/toolbar_title_dodaj_novu" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <ProgressBar
+            android:id="@+id/dodajKnjiguProgress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.appbar.AppBarLayout>
+    <EditText
+        android:id="@+id/txt_dodaj_naziv_knjige"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/appBarLayout_nova_knjiga"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:hint="@string/naslov_knjige"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColorHint="@color/colorDark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+    <EditText
+        android:id="@+id/txt_dodaj_autor"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/txt_dodaj_naziv_knjige"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:hint="@string/autor_knjige"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColorHint="@color/colorDark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <EditText
+        android:id="@+id/txt_dodaj_god_izdavanja"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/txt_dodaj_autor"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="30dp"
+        android:hint="@string/god_izdavanja"
+        android:textAlignment="center"
+        android:textColorHint="@color/colorDark"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_dodaj_autor" />
+
+    <ImageView
+        android:id="@+id/icon_dodaj_godina"
+        android:src="@mipmap/ic_date"
+        android:layout_below="@+id/txt_dodaj_autor"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentEnd="true"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_dodaj_god_izdavanja"
+        app:layout_constraintEnd_toEndOf="@+id/txt_dodaj_god_izdavanja" />
+
+    <EditText
+        android:id="@+id/txt_dodaj_opis"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/txt_dodaj_god_izdavanja"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:hint="@string/opis_knjige"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColorHint="@color/colorDark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+    <Spinner
+        android:id="@+id/txt_dodaj_žanr"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/txt_dodaj_opis"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:textAlignment="center"
+        android:textColorHint="@color/colorDark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:textColor="@color/colorDark"
+        android:text="@string/slika_knjige"
+        android:id="@+id/txt_slika_naslovnice"
+        android:layout_below="@id/txt_dodaj_žanr"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:textSize="20sp"/>
+
+    <ImageView
+        android:id="@+id/icon_slika_knjige"
+        android:layout_width="90dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/txt_slika_naslovnice"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_slika_knjige"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_slika_naslovnice"
+        app:layout_constraintEnd_toEndOf="@+id/txt_slika_naslovnice" />
+    <Button
+        android:id="@+id/button_dodaj_spremi"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/icon_slika_knjige"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:background="@color/colorDark"
+        android:contentDescription="@string/spremi"
+        android:text="@string/spremi"
+        android:textColor="@color/colorLight" />
+</RelativeLayout>

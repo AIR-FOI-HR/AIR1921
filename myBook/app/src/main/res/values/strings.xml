@@ -13,4 +13,51 @@
     <string name="ponovite_lozinku">Ponovite lozinku</string>
     <string name="vec_ste_registrirani">Već ste registrirani?</string>
     <string name="prijavite_se_ovdje">Prijavite se ovdje</string>
+    <string name="spremi">Spremi</string>
+    <string name="prijedlozi">Prijedlozi</string>
+    <string name="slika_knjige">Slika knjige</string>
+    <string name="naslov_knjige">Naslov knjige</string>
+    <string name="ocjena_knjige">Ocjena</string>
+    <string name="opis_knjige">Opis knjige</string>
+    <string name="korisnicko_ime">Korisničko ime</string>
+    <string name="zaboravljena_lozinka_opis">Za postavljanje nove lozinke upišite svoju e-mail adresu. </string>
+    <string name="zaboravljena_lozinka">Zaboravljena lozinka </string>
+    <string name="zaboravili_ste_lozinku">Zaboravili ste lozinku?</string>
+    <string name="pocetna">Početna</string>
+    <string name="sve_knjige">Sve knjige</string>
+    <string name="pretrazi">Pretraži</string>
+    <string name="nova_knjiga">Nova knjiga</string>
+    <string name="profil">Profil</string>
+    <string name="podaci">Podaci</string>
+    <string name="interesi">Interesi</string>
+    <string name="znacke">Značke</string>
+    <string name="statsitika">Statistika</string>
+    <string name="promijenite_lozinku">Promijenite lozinku</string>
+    <string name="osvojene_znacke">Osvojene značke</string>
+    <string name="broj_procitanih">Broj pročitanih knjiga</string>
+    <string name="pogledaj_prema">Pregledaj pročitane knjige prema:</string>
+    <string name="dodaj_novu">Dodaj novu knjigu</string>
+    <string name="autor_knjige">Autor knjige</string>
+    <string name="god_izdavanja">Godina izdavanja</string>
+    <string name="zanr">Žanr</string>
+    <string name="pocni_citati">Počni čitati</string>
+    <string name="komentari">Komentari</string>
+    <string name="pocetak_citanja">Početak čitanja: \u0020</string>
+    <string name="zavrsetak_citanja">Završetak čitanja: \u0020</string>
+    <string name="komentar">Komentar</string>
+    <string name="dodaj_komentar">Ovdje dodajte svoj komentar na pročitanu knjigu.</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="upisite_kljucne">Upišite ključne riječi:</string>
+    <string name="filtriraj_prema">Odaberite žanr:</string>
+    <string name="promjenite_lozinku">Promijenite lozinku</string>
+    <string name="ime_i_prezime">Ime i prezime</string>
+    <string name="mail_adresa">e-mail adresa</string>
+    <string name="odjava">Odjava</string>
+    <string name="naziv_znacke">Naziv značke</string>
+    <string name="opis_znacke">Opis značke</string>
+    <string name="slika_znacke">Slika značke</string>
+
 </resources>
