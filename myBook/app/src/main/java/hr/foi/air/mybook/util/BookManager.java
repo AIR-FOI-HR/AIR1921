@@ -56,13 +56,16 @@ public class BookManager {
             bookListObject.setOcjena(0);
         }
         else {
-            float rating;
-            int sum = 0;
+            float sum = 0;
+            int books = 0;
             for (Citanje citanje : citanjeArrayList) {
-                sum += citanje.getOcjena();
+                if (!citanje.getDatumKraja().isEmpty()) {
+                    sum += citanje.getOcjena();
+                    books++;
+                }
                 Log.i(TAG, "Current sum: " + sum);
             }
-            rating = sum/citanjeArrayList.size();
+            float rating = sum/books;
             Log.i(TAG, "Rating: " + rating);
             bookListObject.setOcjena(rating);
         }

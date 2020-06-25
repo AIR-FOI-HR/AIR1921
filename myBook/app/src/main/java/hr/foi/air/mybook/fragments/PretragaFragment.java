@@ -155,11 +155,15 @@ public class PretragaFragment extends Fragment {
             bookListObject.setOcjena(0);
         } else {
             float sum = 0;
+            int books = 0;
             for (Citanje citanje : citanjeArrayList) {
-                sum += citanje.getOcjena();
+                if (!citanje.getDatumKraja().isEmpty()) {
+                    sum += citanje.getOcjena();
+                    books++;
+                }
                 Log.i(TAG, "Current sum: " + sum);
             }
-            float rating = sum / citanjeArrayList.size();
+            float rating = sum/books;
             Log.i(TAG, "Rating: " + rating);
             bookListObject.setOcjena(rating);
         }
